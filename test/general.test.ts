@@ -42,47 +42,6 @@ describe('signTx', () => {
   })
 })
 
-describe('Node interaction', () => {
-  const nodeUrl = 'https://nodes.wavesplatform.com/'
-
-  it('should send tx to node', async () => {
-    const dataParams = {
-      data: [
-        {
-          key: 'oneTwo',
-          value: false,
-        },
-        {
-          key: 'twoThree',
-          value: 2,
-        },
-        {
-          key: 'three',
-          value: Uint8Array.from([1, 2, 3, 4, 5, 6]),
-        },
-      ],
-      timestamp: 100000,
-    }
-    const result = data(dataParams, 'seed')
-
-    await expect(broadcast(result, nodeUrl)).rejects
-      .toEqual(new Error('Transaction is not allowed by account-script'))
-  })
-
-  it('should retrieve address balance', async () => {
-    const balance = await addressBalance('3PGMh3vQekpTbvUAiKwdzhWsLaxoSBEcsFJ', nodeUrl);
-    expect(typeof balance).toBe('number')
-  })
-
-  it('should retrieve address data by key', async () => {
-    const data1 = await addressDataByKey('3PGMh3vQekpTbvUAiKwdzhWsLaxoSBEcsFJ', 'example', nodeUrl);
-    const data2 = await addressDataByKey('3P5Y26hscWLGxtq2MSMbVsJUx9ZrQHoJLP7', '3PQgaVmE7Zurn3xFMYtckah82PrWuaEcdhR', nodeUrl)
-    expect(data1).toBe(null)
-    expect(typeof data2).toBe('string')
-  })
-
-})
-
 it('verify signatures of txs and orders', async () => {
   const ord = order(orderMinimalParams, stringSeed)
   const tx = burn(burnMinimalParams, [null, stringSeed])

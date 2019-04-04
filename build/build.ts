@@ -8,7 +8,7 @@ async function build() {
     await create(p('tmp/src'))
 
     await npmInstall('typedoc-clarity-theme', 'tmp')
-    await npmInstall('lto-crypto', 'tmp')
+    await npmInstall('@lto-network/lto-crypto', 'tmp')
 
     await copy(p('../src'), p('tmp/src'))
     await copy(p('../tsconfig.json'), p('tmp/tsconfig.json'))

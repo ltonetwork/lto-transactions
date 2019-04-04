@@ -13,14 +13,6 @@ describe('anchor', () => {
     expect(tx.proofs.length).toEqual(1)
   })
 
-  it('Should throw on wrong anchors field type', () => {
-    const tx = () => anchor({ ...anchorMinimalParams, anchors: null } as any, stringSeed)
-    const tx1 = () => anchor({ ...anchorMinimalParams, anchors: { haha: 123 } } as any, stringSeed)
-    expect(tx).toThrow('["anchors should be array"]')
-    expect(tx1).toThrow('["anchors should be array"]')
-  })
-
-
   it('Should get correct signature', () => {
     const tx = anchor({ ...anchorMinimalParams }, stringSeed)
     expect(verifySignature(publicKey(stringSeed), binary.serializeTx(tx), tx.proofs[0]!)).toBeTruthy()
@@ -44,7 +36,7 @@ describe('anchor', () => {
       timestamp: 100000,
     }
     const tx = anchor(anchorParams, 'seed')
-    const barr = '12,1,252,114,65,226,103,96,110,242,73,35,82,18,85,173,252,168,159,237,67,226,116,182,178,180,249,152,104,50,219,208,174,108,0,3,0,6,111,110,101,84,119,111,1,0,0,8,116,119,111,84,104,114,101,101,0,0,0,0,0,0,0,0,2,0,5,116,104,114,101,101,2,0,4,1,2,3,4,0,0,0,0,0,1,134,160,0,0,0,0,0,1,134,160'
+    const barr = '15,1,26,205,53,236,36,225,249,197,208,91,167,95,7,134,151,79,89,254,109,158,209,102,127,50,190,240,113,147,22,40,192,217,0,3,0,32,95,155,210,85,244,27,229,109,59,226,20,147,164,173,233,209,26,164,28,79,64,222,152,12,27,157,116,106,245,216,244,252,0,32,23,40,242,111,105,242,9,209,49,85,32,185,52,151,180,184,122,95,115,170,185,81,232,46,13,188,109,4,234,144,201,31,0,32,25,90,75,62,114,125,73,18,148,213,11,160,29,102,250,187,83,239,83,246,236,94,13,21,71,20,218,91,59,52,136,149,0,0,0,0,0,1,134,160,0,0,0,0,0,1,134,160'
     expect(binary.serializeTx(tx).toString()).toEqual(barr)
   })
 })

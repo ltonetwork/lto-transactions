@@ -19,7 +19,7 @@
     "fix-style": "tslint --fix -c tslint.json '{src,test,usage}/**/*{.ts,.tsx}'",
     "test": "jest"
   },
-  "author": "Moesjarraf Jahangier",
+  "author": "LTO Network",
   "license": "MIT",
   "peerDependencies": {
     "typescript": "^3.2.2"
