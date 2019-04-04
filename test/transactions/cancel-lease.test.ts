@@ -1,7 +1,7 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
 import { cancelLease } from '../../src'
 import { cancelLeaseMinimalParams } from '../minimalParams'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 describe('cancel-lease', () => {
 

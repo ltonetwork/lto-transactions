@@ -51,7 +51,7 @@
     "url": "https://github.com/legalthings/lto-transactions.git"
   },
   "dependencies": {
-    "@waves/marshall": "^0.6.0",
+    "@lto-network/lto-marshall": "^1.0.0",
     "@lto-network/lto-crypto": "^1.0.0",
     "ajv": "^6.5.5",
     "axios": "^0.18.0"

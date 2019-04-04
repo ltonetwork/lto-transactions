@@ -1,5 +1,5 @@
 import { concat, signBytes } from '@lto-network/lto-crypto'
-import { serializePrimitives } from '@waves/marshall'
+import { serializePrimitives } from '@lto-network/lto-marshall'
 const {BASE58_STRING} = serializePrimitives
 import { getSenderPublicKey, convertToPairs } from '../generic'
 import { ICancelOrderParams, ICancelOrder } from '../transactions'

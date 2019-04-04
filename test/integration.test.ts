@@ -19,7 +19,7 @@ import {
 import { order, cancelOrder } from '../src'
 import { cancelSubmittedOrder, submitOrder } from '../src/general'
 import { alias } from '../src/transactions/alias'
-import { binary, json } from '@waves/marshall'
+import { binary, json } from '@lto-network/lto-marshall'
 
 /**
  * Before running test ensure test account has LTO!!

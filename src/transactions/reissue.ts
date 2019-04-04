@@ -2,7 +2,7 @@ import { TRANSACTION_TYPE, IReissueTransaction, IReissueParams, WithId, WithSend
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
 import { addProof, convertToPairs, fee, getSenderPublicKey, networkByte } from '../generic'
 import { TSeedTypes } from '../types'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 
 /* @echo DOCS */

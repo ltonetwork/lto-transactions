@@ -1,5 +1,5 @@
 import { TRANSACTION_TYPE, ICancelLeaseTransaction, ICancelLeaseParams, WithId, WithSender } from '../transactions'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
 import { addProof, getSenderPublicKey, convertToPairs, networkByte, fee } from '../generic'
 import { TSeedTypes } from '../types'

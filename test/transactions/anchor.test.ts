@@ -1,7 +1,7 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
 import { anchor } from '../../src'
 import { anchorMinimalParams } from '../minimalParams'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 describe('anchor', () => {
 
@@ -37,9 +37,9 @@ describe('anchor', () => {
   it('Should correctly serialize', () => {
     const anchorParams = {
       anchors: [
-        '5f9bd255f41be56d3be21493a4ade9d11aa41c4f40de980c1b9d746af5d8f4fc', // someparam
-        '1728f26f69f209d1315520b93497b4b87a5f73aab951e82e0dbc6d04ea90c91f', // someparam2
-        '195a4b3e727d491294d50ba01d66fabb53ef53f6ec5e0d154714da5b3b348895'  // someparam3
+        '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX', // someparam
+        '2ZQbGRzfGJEihHoDCdS6DTnvrQV9gkj7KdyapmJ1UbXt', // someparam2
+        '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
       ],
       timestamp: 100000,
     }

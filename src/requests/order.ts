@@ -2,7 +2,7 @@ import { signBytes, hashBytes } from '@lto-network/lto-crypto'
 import { addProof, getSenderPublicKey, convertToPairs, isOrder } from '../generic'
 import { IOrder, IOrderParams, WithId, WithSender } from '../transactions'
 import { TSeedTypes } from '../types'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 
 /**

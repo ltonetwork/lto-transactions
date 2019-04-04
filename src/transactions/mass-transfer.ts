@@ -2,7 +2,7 @@ import { TRANSACTION_TYPE, IMassTransferTransaction, IMassTransferParams, WithId
 import { addProof, convertToPairs, fee, getSenderPublicKey } from '../generic'
 import { TSeedTypes } from '../types'
 import { hashBytes, signBytes } from '@lto-network/lto-crypto'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 
 /* @echo DOCS */

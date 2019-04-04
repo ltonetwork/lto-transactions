@@ -1,7 +1,7 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
 import { issue } from '../../src'
 import { issueMinimalParams } from '../minimalParams'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 describe('issue', () => {
 

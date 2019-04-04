@@ -2,7 +2,7 @@ import { TRANSACTION_TYPE, ISetScriptTransaction, ISetScriptParams, WithId, With
 import { signBytes, hashBytes, } from '@lto-network/lto-crypto'
 import { addProof, getSenderPublicKey, base64Prefix, convertToPairs, networkByte, fee } from '../generic'
 import { TSeedTypes } from '../types'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 /* @echo DOCS */
 export function setScript(params: ISetScriptParams, seed: TSeedTypes): ISetScriptTransaction & WithId

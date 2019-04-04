@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { binary, json, serializePrimitives } from '@waves/marshall'
+import { binary, json, serializePrimitives } from '@lto-network/lto-marshall'
 import { verifySignature } from '@lto-network/lto-crypto'
 import {
   IAliasTransaction,

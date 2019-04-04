@@ -63,7 +63,7 @@ export {
 
 // internal libraries access
 import * as crypto from '@lto-network/lto-crypto'
-import * as marshall from '@waves/marshall'
+import * as marshall from '@lto-network/lto-marshall'
 
 const libs = {
   crypto,

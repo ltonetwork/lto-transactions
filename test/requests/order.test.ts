@@ -1,5 +1,5 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 import { order } from '../../src/index'
 import { orderMinimalParams } from '../minimalParams'
 

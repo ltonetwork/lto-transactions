@@ -9,7 +9,7 @@ import {
   sha256
 } from '@lto-network/lto-crypto'
 import dictionary from './dictionary'
-import { serializePrimitives, parsePrimitives } from '@waves/marshall'
+import { serializePrimitives, parsePrimitives } from '@lto-network/lto-marshall'
 
 export class Seed {
 

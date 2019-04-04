@@ -1,5 +1,5 @@
 import { TRANSACTION_TYPE, IAliasParams, IAliasTransaction, WithId, WithSender } from '../transactions'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 import { hashBytes, signBytes } from '@lto-network/lto-crypto'
 import { addProof, convertToPairs, fee, getSenderPublicKey, networkByte } from '../generic'
 import { TSeedTypes } from '../types'

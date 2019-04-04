@@ -127,9 +127,9 @@ export const setAnchorTx = { type: 15,
    [ '4ffQFcfv9NG8GtNB5c1yamFvEFoixvgYBHPmfwSAkZeVRiCwZvB2HWWiMcbiujGhWGxXnho37bWqELnQ6DBPCaj4' ],
   id: '4ERUXALAziaWJ1Acsmpnfjgtv1ixHSWXRp5dBR837o4e',
   anchors: [
-    '5f9bd255f41be56d3be21493a4ade9d11aa41c4f40de980c1b9d746af5d8f4fc', // someparam
-    '1728f26f69f209d1315520b93497b4b87a5f73aab951e82e0dbc6d04ea90c91f', // someparam2
-    '195a4b3e727d491294d50ba01d66fabb53ef53f6ec5e0d154714da5b3b348895'  // someparam3
+    '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX', // someparam
+    '2ZQbGRzfGJEihHoDCdS6DTnvrQV9gkj7KdyapmJ1UbXt', // someparam2
+    '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
   ] }
 
   export const exampleTxs = {3: issueTx,4: transferTx,5: reissueTx,6: burnTx,8: leaseTx,9: cancelLeaseTx,10: aliasTx,11: massTransferTx,12: dataTx,13: setScriptTx,15: setAnchorTx}

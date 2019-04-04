@@ -2,7 +2,7 @@ import { TRANSACTION_TYPE, IAnchorTransaction, IAnchorParams, WithId, WithSender
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
 import { addProof, getSenderPublicKey, convertToPairs, fee } from '../generic'
 import { TSeedTypes } from '../types'
-import { binary } from '@waves/marshall'
+import { binary } from '@lto-network/lto-marshall'
 
 /* @echo DOCS */
 export function anchor(params: IAnchorParams, seed: TSeedTypes): IAnchorTransaction & WithId
