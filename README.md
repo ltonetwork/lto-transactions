@@ -107,8 +107,8 @@ const nodeUrl = 'https://nodes.lto.network';
 broadcast(signedTx, nodeUrl).then(resp => console.log(resp))
 ```
 You can send tx to any lto node you like:. E.g.:
-* https://testnet.legalthings.one - lto TESTNET nodes hosted by LTO Network
+* https://testnet.lto.network - lto TESTNET nodes hosted by LTO Network
 * https://nodes.lto.network - lto MAINNET nodes hosted by LTO Network
 #### Important!!!
-Most transactions require chainId as parameter, e.g: [IBurnParams](https://legalthings.github.io/lto-transactions/interfaces/iburnparams.html). By default chainId is 'W', which means MAINNET. To make transaction in TESTNET be sure to pass chainId if it is present in params interface and then send it to TESTNET node
+Most transactions require chainId as parameter, e.g: [IBurnParams](https://legalthings.github.io/lto-transactions/interfaces/iburnparams.html). By default chainId is 'L', which means MAINNET. To make transaction in TESTNET be sure to pass chainId if it is present in params interface and then send it to TESTNET node
 
