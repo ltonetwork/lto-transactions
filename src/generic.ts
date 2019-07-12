@@ -1,11 +1,8 @@
 import {
   WithProofs,
   TTxParams,
-  IOrderParams,
   TTx,
-  IOrder,
   IBasicParams,
-  ICancelOrderParams,
   WithSender
 } from './transactions'
 import { TSeedTypes } from './types'
@@ -55,9 +52,6 @@ export function convertToPairs(seedObj?: TSeedTypes): [string, number | undefine
     return keys.map(k => [seedObj[k], k] as [string, number])
   }
 }
-
-export const isOrder = (p: any): p is IOrder => (<IOrder>p).assetPair !== undefined
-
 
 export type CancellablePromise<T> = Promise<T> & { cancel: () => void }
 

@@ -10,18 +10,12 @@ Using this library you can easily create and sign transactions for LTO blockchai
 It also allows you to multi-sign existing transactions or create them without signature at all.
 
 This library is a set of transaction constructing functions:
-* [Alias](https://legalthings.github.io/lto-transactions/globals.html#alias)
-* [Issue](https://legalthings.github.io/lto-transactions/globals.html#issue)
-* [Reissue](https://legalthings.github.io/lto-transactions/globals.html#reissue)
-* [Burn](https://legalthings.github.io/lto-transactions/globals.html#burn)
 * [Lease](https://legalthings.github.io/lto-transactions/globals.html#lease)
 * [Cancel lease](https://legalthings.github.io/lto-transactions/globals.html#cancellease)
 * [Transfer](https://legalthings.github.io/lto-transactions/globals.html#transfer)
 * [Mass transfer](https://legalthings.github.io/lto-transactions/globals.html#masstransfer)
 * [Set script](https://legalthings.github.io/lto-transactions/globals.html#setscript)
-* [Data](https://legalthings.github.io/lto-transactions/globals.html#data)
-* [Set asset script](https://legalthings.github.io/lto-transactions/globals.html#setassetscript)
-* [Order](https://legalthings.github.io/lto-transactions/globals.html#order)
+* [Anchor](https://legalthings.github.io/lto-transactions/globals.html#anchor)
 
 Check full documentation on [GitHub Pages](https://legalthings.github.io/lto-transactions/index.html).
 
@@ -35,7 +29,7 @@ const { transfer } = require('@lto-network/lto-transactions')
 const seed = 'some example seed phrase'
 const signedTranserTx = transfer({ 
   amount: 1,
-  recipient: '3P6fVra21KmTfWHBdib45iYV6aFduh4WwC2',
+  recipient: '3JmEPiCpfL4p5WswT21ZpWKND5apPs2hTMB',
   //Timestamp is optional but it was overrided, in case timestamp is not provided it will fallback to Date.now(). You can set any oftional params yourself. go check full docs
   timestamp: 1536917842558 
 }, seed)
@@ -43,20 +37,18 @@ const signedTranserTx = transfer({
 
 Output will be a signed transfer transaction:
 ```js
-{
-  id: '8NrUwgKRCMFbUbqXKQAHkGnspmWHEjKUSi5opEC6Havq',
+{ 
+  id: '3sgkGCxZmPpKDz8BNztWNoVEiXXgWgeZdYpJNh1CqtKp',
   type: 4,
   version: 2,
-  recipient: '3P6fVra21KmTfWHBdib45iYV6aFduh4WwC2',
-  attachment: undefined,
-  feeAssetId: undefined,
-  assetId: undefined,
+  senderPublicKey: '98Pw96PizgJC7MHT8RUDJGS7YGr68YDqmSA2X83XJeDX',
+  recipient: '3JmEPiCpfL4p5WswT21ZpWKND5apPs2hTMB',
   amount: 1,
+  attachment: '',
   fee: 100000,
-  senderPublicKey: '6nR7CXVV7Zmt9ew11BsNzSvVmuyM5PF6VPbWHW9BHgPq',
   timestamp: 1536917842558,
-  proofs: [
-    '25kyX6HGjS3rkPTJRj5NVH6LLuZe6SzCzFtoJ8GDkojY9U5oPfVrnwBgrCHXZicfsmLthPUjTrfT9TQL2ciYrPGE'
+  proofs: [ 
+    '4r7Amhzmpj2yh7uCiTkTjosVwKfHUTucoyitRXafzTBtQrsdqVGcJvJdneHakNq2LcsBWCxfDowkke7RbAMMZoaQ' 
   ]
 }
 ```
@@ -65,7 +57,7 @@ You can also create transaction, but not sign it:
 ```javascript
 const unsignedTransferTx = transfer({ 
   amount: 1,
-  recipient: '3P6fVra21KmTfWHBdib45iYV6aFduh4WwC2',
+  recipient: '3JmEPiCpfL4p5WswT21ZpWKND5apPs2hTMB',
   //senderPublicKey is required if you omit seed
   senderPublicKey: '6nR7CXVV7Zmt9ew11BsNzSvVmuyM5PF6VPbWHW9BHgPq' 
 })
@@ -74,26 +66,24 @@ const unsignedTransferTx = transfer({
 Now you are able to POST it to LTO API or store for future purpose or you can add another signature from other party:
 ```js
 const otherPartySeed = 'other party seed phrase'
-const transferSignedWithTwoParties = transfer(signedTranserTx, seed)
+const transferSignedWithTwoParties = transfer(signedTranserTx, otherPartySeed)
 ```
 
 So now there are two proofs:
 ```js
-{
-  id: '8NrUwgKRCMFbUbqXKQAHkGnspmWHEjKUSi5opEC6Havq',
+{ 
+  id: '3sgkGCxZmPpKDz8BNztWNoVEiXXgWgeZdYpJNh1CqtKp',
   type: 4,
   version: 2,
-  recipient: '3P6fVra21KmTfWHBdib45iYV6aFduh4WwC2',
-  attachment: undefined,
-  feeAssetId: undefined,
-  assetId: undefined,
+  senderPublicKey: '98Pw96PizgJC7MHT8RUDJGS7YGr68YDqmSA2X83XJeDX',
+  recipient: '3JmEPiCpfL4p5WswT21ZpWKND5apPs2hTMB',
   amount: 1,
+  attachment: '',
   fee: 100000,
-  senderPublicKey: '6nR7CXVV7Zmt9ew11BsNzSvVmuyM5PF6VPbWHW9BHgPq',
   timestamp: 1536917842558,
-  proofs: [
-    '25kyX6HGjS3rkPTJRj5NVH6LLuZe6SzCzFtoJ8GDkojY9U5oPfVrnwBgrCHXZicfsmLthPUjTrfT9TQL2ciYrPGE',
-    'CM9emPzpe6Ram7ZxcYax6s7Hkw6698wXCMPSckveFAS2Yh9vqJpy1X9nL7p4RKgU3UEa8c9RGXfUK6mFFq4dL9z'
+  proofs: [ 
+    '4r7Amhzmpj2yh7uCiTkTjosVwKfHUTucoyitRXafzTBtQrsdqVGcJvJdneHakNq2LcsBWCxfDowkke7RbAMMZoaQ',
+    '4m2GCeWc3jFg7qE7D67rzD26KTe2YMaSSz99GcxGCezBAuh6LSWBCEnDbPDfRMKDoCZDdTLgjovdF9LhDzan4Qah' 
   ]
 }
 ```

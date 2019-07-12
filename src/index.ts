@@ -4,20 +4,13 @@
 // https://opensource.org/licenses/MIT
 
 export { massTransfer } from './transactions/mass-transfer'
-export { reissue } from './transactions/reissue'
-export { burn } from './transactions/burn'
-export { exchange } from './transactions/exchange'
 export { lease } from './transactions/lease'
 export { cancelLease } from './transactions/cancel-lease'
 export { data } from './transactions/data'
 export { anchor } from './transactions/anchor'
-export { issue } from './transactions/issue'
 export { transfer } from './transactions/transfer'
-export { alias } from './transactions/alias'
 export { setScript } from './transactions/set-script'
-export { order } from './requests/order'
-export { cancelOrder } from './requests/cancel-order'
-export { signTx, broadcast, verify, serialize, submitOrder, cancelSubmittedOrder, addressBalance, addressDataByKey } from './general'
+export { signTx, broadcast, verify, serialize, addressBalance, addressDataByKey } from './general'
 export { waitForTx } from './generic'
 
 // Export interfaces
@@ -25,15 +18,6 @@ export {
   ITransaction,
   TTx,
   TTxParams,
-  IAliasTransaction,
-  IAliasParams,
-  IIssueTransaction,
-  IIssueParams,
-  IReissueTransaction,
-  IReissueParams,
-  IBurnTransaction,
-  IBurnParams,
-  IExchangeTransaction,
   ILeaseTransaction,
   ILeaseParams,
   ICancelLeaseTransaction,
@@ -48,10 +32,6 @@ export {
   IAnchorTransaction,
   IAnchorParams,
   ISetScriptTransaction,
-  IOrder,
-  IOrderParams,
-  ICancelOrder,
-  ICancelOrderParams,
   WithId,
   WithSender,
   WithProofs,

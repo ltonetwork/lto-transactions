@@ -2,17 +2,11 @@ import axios from 'axios'
 import { binary, json, serializePrimitives } from '@lto-network/lto-marshall'
 import { verifySignature } from '@lto-network/lto-crypto'
 import {
-  IAliasTransaction,
-  IBurnTransaction,
   ICancelLeaseTransaction,
-  ICancelOrder,
-  IDataTransaction, IExchangeTransaction,
+  IDataTransaction,
   IAnchorTransaction,
-  IIssueTransaction,
   ILeaseTransaction,
   IMassTransferTransaction,
-  IOrder,
-  IReissueTransaction,
   ISetScriptTransaction,
   ITransferTransaction,
   TRANSACTION_TYPE,
@@ -20,37 +14,26 @@ import {
   TTxParams,
 } from './transactions'
 import { TSeedTypes } from './types'
-import { issue } from './transactions/issue'
 import { transfer } from './transactions/transfer'
-import { reissue } from './transactions/reissue'
-import { burn } from './transactions/burn'
 import { lease } from './transactions/lease'
 import { cancelLease } from './transactions/cancel-lease'
 import { data } from './transactions/data'
 import { anchor } from './transactions/anchor'
 import { massTransfer } from './transactions/mass-transfer'
-import { alias } from './transactions/alias'
 import { setScript } from './transactions/set-script'
-import { isOrder } from './generic'
-import { exchange } from './transactions/exchange'
 
 export interface WithTxType {
   type: TRANSACTION_TYPE
 }
 
 export const txTypeMap: { [type: number]: { sign: (tx: TTx | TTxParams & WithTxType, seed: TSeedTypes) => TTx } } = {
-  [TRANSACTION_TYPE.ISSUE]: { sign: (x, seed) => issue(x as IIssueTransaction, seed) },
   [TRANSACTION_TYPE.TRANSFER]: { sign: (x, seed) => transfer(x as ITransferTransaction, seed) },
-  [TRANSACTION_TYPE.REISSUE]: { sign: (x, seed) => reissue(x as IReissueTransaction, seed) },
-  [TRANSACTION_TYPE.BURN]: { sign: (x, seed) => burn(x as IBurnTransaction, seed) },
   [TRANSACTION_TYPE.LEASE]: { sign: (x, seed) => lease(x as ILeaseTransaction, seed) },
   [TRANSACTION_TYPE.CANCEL_LEASE]: { sign: (x, seed) => cancelLease(x as ICancelLeaseTransaction, seed) },
-  [TRANSACTION_TYPE.ALIAS]: { sign: (x, seed) => alias(x as IAliasTransaction, seed) },
   [TRANSACTION_TYPE.MASS_TRANSFER]: { sign: (x, seed) => massTransfer(x as IMassTransferTransaction, seed) },
   [TRANSACTION_TYPE.DATA]: { sign: (x, seed) => data(x as IDataTransaction, seed) },
   [TRANSACTION_TYPE.ANCHOR]: { sign: (x, seed) => anchor(x as IAnchorTransaction, seed) },
   [TRANSACTION_TYPE.SET_SCRIPT]: { sign: (x, seed) => setScript(x as ISetScriptTransaction, seed) },
-  [TRANSACTION_TYPE.EXCHANGE]: { sign: (x, seed) => exchange(x as IExchangeTransaction, seed) },
 }
 
 /**
@@ -65,21 +48,20 @@ export function signTx(tx: TTx | TTxParams & WithTxType, seed: TSeedTypes): TTx 
 }
 
 /**
- * Converts transaction or order object to Uint8Array
+ * Converts transaction to Uint8Array
  * @param obj transaction or order
  */
-export function serialize(obj: TTx | IOrder): Uint8Array {
-  if (isOrder(obj)) return binary.serializeOrder(obj)
+export function serialize(obj: TTx): Uint8Array {
   return binary.serializeTx(obj)
 }
 
 /**
- * Verifies signature of transaction or order
+ * Verifies signature of transaction
  * @param obj
  * @param proofN - proof index. Takes first proof by default
  * @param publicKey - takes senderPublicKey by default
  */
-export function verify(obj: TTx | IOrder, proofN = 0, publicKey?: string): boolean {
+export function verify(obj: TTx, proofN = 0, publicKey?: string): boolean {
   publicKey = publicKey || obj.senderPublicKey
   const bytes = serialize(obj)
   const signature = obj.version == null ? (obj as any).signature : obj.proofs[proofN]
@@ -137,32 +119,15 @@ export function addressDataByKey(address: string, key: string, nodeUrl: string):
 }
 
 /**
- * Sends order to matcher
- * @param ord - transaction to send
- * @param matcherUrl - matcher address to send order to. E.g. https://matcher.wavesplatform.com/
+ * Compile a script
+ * @param script the uncompiled script
+ * @param nodeUrl - node address to ask balance from. E.g. https://nodes.lto.network/
  */
-export function submitOrder(ord: IOrder, matcherUrl: string) {
-  return axios.post('matcher/orderbook', json.stringifyOrder(ord), {
-    baseURL: matcherUrl,
-    headers: { 'content-type': 'application/json' },
+export function compile(script: string, nodeUrl: string) {
+  return axios.post('utils/script/compile', script, {
+    baseURL: nodeUrl,
+    headers: {'content-type': 'application/json'},
   })
-    .then(x => x.data)
-    .catch(e => Promise.reject(e.response && e.response.status === 400 ? new Error(e.response.data.message) : e))
-}
-
-/**
- * Sends cancel order command to matcher. Since matcher api requires amountAsset and priceAsset in request url,
- * this function requires them as params
- * @param co - signed cancelOrder object
- * @param amountAsset - amount asset of the order to be canceled
- * @param priceAsset - price asset of the order to be canceled
- * @param matcherUrl - matcher address to send order cancel to. E.g. https://matcher.wavesplatform.com/
- */
-export function cancelSubmittedOrder(co: ICancelOrder, amountAsset: string | null, priceAsset: string | null, matcherUrl: string) {
-  return axios.post(`matcher/orderbook/${amountAsset || 'LTO'}/${priceAsset || 'LTO'}/cancel`, JSON.stringify(co), {
-    baseURL: matcherUrl,
-    headers: { 'content-type': 'application/json' },
-  })
-    .then(x => x.data)
+    .then(x => x.data && x.data)
     .catch(e => Promise.reject(e.response && e.response.status === 400 ? new Error(e.response.data.message) : e))
 }

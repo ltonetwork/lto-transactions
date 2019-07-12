@@ -1,19 +1,3 @@
-export const issueTx = { type: 3,
-  version: 2,
-  decimals: 8,
-  reissuable: false,
-  fee: 100000000,
-  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
-  timestamp: 1542539421434,
-  chainId: 'W',
-  proofs:
-   [ 'TVMCuJAb52AqLZnJHsZoWhjmULk27hzbzy7n3LsrwivdsCQ6gQpn8TtVwYuYhAZVcCLkbm4yznGCgrV96spafcp' ],
-  id: '3TZ1AWMeVskdy96rNo9AiyegimGyDyXr55MbDTQX4ZXM',
-  assetId: 'test',
-  quantity: 10000,
-  name: 'test',
-  description: 'tratata' }
-
 export const transferTx = { type: 4,
   version: 2,
   fee: 100000,
@@ -24,31 +8,6 @@ export const transferTx = { type: 4,
   id: 'EG3WvPWWEU5DdJ7xfB3Y5TRJNzMpt6urgKoP7docipvW',
   recipient: 'aaaa',
   amount: 10000 }
-
-export const reissueTx = { type: 5,
-  version: 2,
-  chainId: 'W',
-  fee: 100000000,
-  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
-  timestamp: 1542539421477,
-  proofs:
-   [ 'mJ3F7io67rPTqQ6ATvcqNVau7CUvunB6iucxX5LcYJuxWkmoWnY59Yo4NtmCn53v5KhuhJVAZ9eqaznFCvJ1s1E' ],
-  id: '3b5sU6YiYS1B3NrSR3der4hwxN4nqc6xpmNPiKXgeAhm',
-  assetId: 'test',
-  quantity: 10000,
-  reissuable: false }
-
-export const burnTx = { type: 6,
-  version: 2,
-  chainId: 'W',
-  fee: 100000,
-  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
-  timestamp: 1542539421523,
-  proofs:
-   [ '3JYfajBS1KJFSu3cdkF3f3JpH9kGVPR1R1YEgV7LHCHJyQXa82k7SMu9rqwpMvAqCXoQeJa5rEQPF9NY9rnufUan' ],
-  id: '6X7Fe82PcVeU9qMtscBA2fBzrSf96PtAwrynViR3zRjP',
-  assetId: 'test',
-  quantity: 10000 }
 
 export const leaseTx = { type: 8,
   version: 2,
@@ -71,16 +30,6 @@ export const cancelLeaseTx = { type: 9,
    [ '5yytwFhmSJhPoRViBKt8AjYkBLxHYxgrs9mSPs3khT4iFLzqbkyyAYu7qbPsJ4iut8BKFFADX2J6hfVwxNFkHTjo' ],
   id: '656pBWMAPfVMu1gbSZ5dd5WTRQzWNo2phfJsD2rDBKfh',
   leaseId: 'test' }
-
-export const aliasTx = { type: 10,
-  version: 2,
-  fee: 100000,
-  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
-  timestamp: 1542539421565,
-  id: '1bVuFdMbDAk6dhcQFfJFxpDjmm8DdFnnKesQ3wpxj7P',
-  proofs:
-   [ '5cW1Ej6wFRK1XpMm3daCWjiSXaKGYfL7bmspZjzATXrNYjRVxZJQVJsDU7ZVcxNXcKJ39fhjxv3rSu4ovPT3Fau8' ],
-  alias: 'MyTestAlias' }
 
 export const massTransferTx = { type: 11,
   version: 1,
@@ -132,5 +81,4 @@ export const setAnchorTx = { type: 15,
     '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
   ] }
 
-  export const exampleTxs = {3: issueTx,4: transferTx,5: reissueTx,6: burnTx,8: leaseTx,9: cancelLeaseTx,10: aliasTx,11: massTransferTx,12: dataTx,13: setScriptTx,15: setAnchorTx}
-  
+  export const exampleTxs = {4: transferTx,8: leaseTx,9: cancelLeaseTx,11: massTransferTx,12: dataTx,13: setScriptTx,15: setAnchorTx}

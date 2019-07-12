@@ -2,15 +2,9 @@ import { TypelessDataEntry } from './transactions/data'
 
 export enum TRANSACTION_TYPE {
   GENESIS = 1,
-  PAYMENT = 2,
-  ISSUE = 3,
   TRANSFER = 4,
-  REISSUE = 5,
-  BURN = 6,
-  EXCHANGE = 7,
   LEASE = 8,
   CANCEL_LEASE = 9,
-  ALIAS = 10,
   MASS_TRANSFER = 11,
   DATA = 12,
   SET_SCRIPT = 13,
@@ -72,39 +66,13 @@ export interface ITransaction<LONG = string | number> extends WithProofs, WithSe
  *
  */
 export type TTx<LONG = string | number> =
-  | IAliasTransaction<LONG>
-  | IIssueTransaction<LONG>
   | ITransferTransaction<LONG>
-  | IReissueTransaction<LONG>
-  | IBurnTransaction<LONG>
   | ILeaseTransaction<LONG>
-  | IExchangeTransaction
   | ICancelLeaseTransaction<LONG>
   | IMassTransferTransaction<LONG>
   | ISetScriptTransaction<LONG>
   | IDataTransaction<LONG>
   | IAnchorTransaction<LONG>
-
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IIssueTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
-  type: TRANSACTION_TYPE.ISSUE
-  /**
-   * @minLength 4
-   * @maxLength 16
-   */
-  name: string
-  /**
-   * @maxLength 1000
-   */
-  description: string
-  decimals: number
-  quantity: LONG
-  reissuable: boolean
-  script?: string
-}
 
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
@@ -150,38 +118,6 @@ export interface IMassTransferItem<LONG = string | number> {
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
  */
-export interface IReissueTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
-  type: TRANSACTION_TYPE.REISSUE
-  assetId: string
-  quantity: LONG
-  reissuable: boolean
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IBurnTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
-  type: TRANSACTION_TYPE.BURN
-  assetId: string
-  quantity: LONG
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IExchangeTransaction<LONG = string | number> extends ITransaction<LONG> {
-  type: TRANSACTION_TYPE.EXCHANGE
-  order1: IOrder
-  order2: IOrder
-  price: LONG
-  amount: LONG
-  buyMatcherFee: LONG
-  sellMatcherFee: LONG
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
 export interface ILeaseTransaction<LONG = string | number> extends ITransaction<LONG> {
   type: TRANSACTION_TYPE.LEASE
   amount: LONG
@@ -194,15 +130,6 @@ export interface ILeaseTransaction<LONG = string | number> extends ITransaction<
 export interface ICancelLeaseTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
   type: TRANSACTION_TYPE.CANCEL_LEASE
   leaseId: string
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- * Library requires chainId to be present in this transaction, even thought node returns json without it
- */
-export interface IAliasTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
-  type: TRANSACTION_TYPE.ALIAS
-  alias: string
 }
 
 /**
@@ -229,44 +156,13 @@ export interface IDataTransaction<LONG = string | number> extends ITransaction<L
   data: DataEntry[]
 }
 
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IOrder<LONG = string | number> extends WithProofs, WithSender {
-  version?: number,
-  orderType: 'buy' | 'sell'
-  assetPair: {
-    amountAsset: string | null
-    priceAsset: string | null
-  }
-  price: LONG
-  amount: LONG
-  timestamp: number
-  expiration: number
-  matcherFee: number
-  matcherPublicKey: string
-}
-
-/**
- * CancelOrder object. When this object is sent to matcher, order with 'orderId' will be canceled
- */
-export interface ICancelOrder {
-  sender: string
-  orderId: string
-  signature: string
-}
-
 //////////////params
 export type TTxParams<LONG = string | number> =
-  | IAliasParams<LONG>
-  | IBurnParams<LONG>
   | ICancelLeaseParams<LONG>
   | IDataParams<LONG>
   | IAnchorParams<LONG>
-  | IIssueParams<LONG>
   | ILeaseParams<LONG>
   | IMassTransferParams<LONG>
-  | IReissueParams<LONG>
   | ISetScriptParams<LONG>
   | ITransferParams<LONG>
 
@@ -308,21 +204,6 @@ export interface WithChainIdParam {
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
  */
-export interface IAliasParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
-  alias: string
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IBurnParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
-  assetId: string
-  quantity: LONG
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
 export interface ICancelLeaseParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
   leaseId: string
 }
@@ -332,25 +213,6 @@ export interface ICancelLeaseParams<LONG = string | number> extends IBasicParams
  */
 export interface IDataParams<LONG = string | number> extends IBasicParams<LONG> {
   data: Array<DataEntry | TypelessDataEntry>
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IIssueParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
-  /**
-   * @minLength 4
-   * @maxLength 16
-   */
-  name: string
-  /**
-   * @maxLength 1000
-   */
-  description: string
-  quantity: LONG
-  decimals?: number
-  reissuable?: boolean
-  script?: string
 }
 
 /**
@@ -371,35 +233,6 @@ export interface IMassTransferParams<LONG = string | number> extends IBasicParam
    */
   attachment?: string
   assetId?: string | null
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IOrderParams<LONG = string | number> {
-  matcherPublicKey: string
-  price: LONG
-  amount: LONG
-  orderType: 'buy' | 'sell',
-  amountAsset: string | null
-  priceAsset: string | null
-  senderPublicKey?: string
-  matcherFee?: number
-  timestamp?: number
-  expiration?: number
-}
-
-export interface ICancelOrderParams {
-  orderId: string
-}
-
-/**
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IReissueParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
-  assetId: string
-  quantity: LONG
-  reissuable: boolean
 }
 
 /**
