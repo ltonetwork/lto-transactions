@@ -17,12 +17,11 @@ This library is a set of transaction constructing functions:
 * [Set script](https://legalthings.github.io/lto-transactions/globals.html#setscript)
 * [Anchor](https://legalthings.github.io/lto-transactions/globals.html#anchor)
 
-Check full documentation on [GitHub Pages](https://legalthings.github.io/lto-transactions/index.html).
+Check the [full documentation](https://docs.ltonetwork.com).
 
 ### Transactions
 
-The idea is really simple - you create transaction and sign it from a minimal set of required params.
-If you want to create [Transfer transaction](https://legalthings.github.io/lto-transactions/interfaces/itransfertransaction.html) the minimum you need to provide is **amount** and **recipient** as defined in [Transfer params](https://legalthings.github.io/lto-transactions/interfaces/itransferparams.html):
+Create transaction and sign it from a minimal set of required params. If you want to create [Transfer transaction](https://legalthings.github.io/lto-transactions/interfaces/itransfertransaction.html) the minimum you need to provide is **amount** and **recipient** as defined in [Transfer params](https://legalthings.github.io/lto-transactions/interfaces/itransferparams.html):
 ```js
 
 const { transfer } = require('@lto-network/lto-transactions')
@@ -91,7 +90,7 @@ So now there are two proofs:
 ### Broadcast
 To send transaction you can use either node [REST API](https://nodes.lto.network/api-docs/index.html#!/transactions/broadcast) or [broadcast](https://legalthings.github.io/lto-transactions/globals.html#broadcast) helper function:
 ```javascript
-const {broadcast} =  require('@lto-network/lto-transactions');
+const {broadcast} = require('@lto-network/lto-transactions');
 const nodeUrl = 'https://nodes.lto.network';
 
 broadcast(signedTx, nodeUrl).then(resp => console.log(resp))
