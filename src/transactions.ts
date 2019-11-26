@@ -9,6 +9,7 @@ export enum TRANSACTION_TYPE {
   DATA = 12,
   SET_SCRIPT = 13,
   ANCHOR = 15,
+  ASSOCIATION = 16,
 }
 
 export enum DATA_FIELD_TYPE {
@@ -73,6 +74,7 @@ export type TTx<LONG = string | number> =
   | ISetScriptTransaction<LONG>
   | IDataTransaction<LONG>
   | IAnchorTransaction<LONG>
+  | IAssociationTransaction<LONG>
 
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
@@ -105,6 +107,18 @@ export interface ITransferTransaction<LONG = string | number> extends ITransacti
 export interface IAnchorTransaction<LONG = string | number> extends ITransaction<LONG> {
   type: TRANSACTION_TYPE.ANCHOR
   anchors: string[]
+}
+
+/**
+ * Used for association transactions.
+ * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
+ */
+export interface IAssociationTransaction<LONG = string | number> extends ITransaction<LONG> {
+  type: TRANSACTION_TYPE.ASSOCIATION
+  party: string,
+  associationType: LONG,
+  hash?: string | null,
+  action: string,
 }
 
 /**
@@ -267,4 +281,14 @@ export interface ITransferParams<LONG = string | number> extends IBasicParams<LO
  */
 export interface IAnchorParams<LONG = string | number> extends IBasicParams<LONG> {
   anchors: string[]
+}
+
+/**
+ * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
+ */
+export interface IAssociationParams<LONG = string | number> extends IBasicParams<LONG> {
+  party: string,
+  associationType: LONG,
+  hash?: string | null,
+  action: string,
 }

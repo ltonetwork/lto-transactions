@@ -8,6 +8,7 @@ export { lease } from './transactions/lease'
 export { cancelLease } from './transactions/cancel-lease'
 export { data } from './transactions/data'
 export { anchor } from './transactions/anchor'
+export { association } from './transactions/association'
 export { transfer } from './transactions/transfer'
 export { setScript } from './transactions/set-script'
 export { signTx, broadcast, verify, serialize, addressBalance, addressDataByKey } from './general'
@@ -31,6 +32,8 @@ export {
   IDataParams,
   IAnchorTransaction,
   IAnchorParams,
+  IAssociationTransaction,
+  IAssociationParams,
   ISetScriptTransaction,
   WithId,
   WithSender,

@@ -67,7 +67,7 @@ export const setScriptTx = { type: 13,
   id: 'J8SBGZzSLybdsgpFjDNxVwB8mixkZoEJkgHya3EiXXPc',
   script: 'base64:AQa3b8tH' }
 
-export const setAnchorTx = { type: 15,
+export const anchorTx = { type: 15,
   version: 1,
   fee: 1000000,
   senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
@@ -81,4 +81,26 @@ export const setAnchorTx = { type: 15,
     '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
   ] }
 
-  export const exampleTxs = {4: transferTx,8: leaseTx,9: cancelLeaseTx,11: massTransferTx,12: dataTx,13: setScriptTx,15: setAnchorTx}
+export const associationTx = { type: 16,
+  version: 1,
+  fee: 1000000,
+  senderPublicKey: '7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh',
+  timestamp: 1542539421680,
+  proofs:
+      [ 'KL8ggXHZiBxe32zdYwBV6k4fJ6AvEfM3Hn4HmfcPpPDqtakS2NonckAVJ53N1s2gzX7kxADPR9afmP3f3qYteLY' ],
+  id: '9NrYcPr6zN7rr9nypvuQHSTToNniyYXKiDFK3UDeQ6F8',
+  party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+  associationType: 2,
+  hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX',
+  action: 'issue' }
+
+export const exampleTxs = {
+  4: transferTx,
+  8: leaseTx,
+  9: cancelLeaseTx,
+  11: massTransferTx,
+  12: dataTx,
+  13: setScriptTx,
+  15: anchorTx,
+  16: associationTx,
+}
