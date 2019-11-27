@@ -1,7 +1,12 @@
 import {
-  ICancelLeaseParams, IDataParams, IAnchorParams,
+  ICancelLeaseParams,
+  IDataParams,
+  IAnchorParams,
+  IAssociationParams,
   ILeaseParams,
-  IMassTransferParams, ISetScriptParams, ITransferParams,
+  IMassTransferParams,
+  ISetScriptParams,
+  ITransferParams,
   TRANSACTION_TYPE
 } from '../src/transactions'
 
@@ -49,6 +54,12 @@ export const anchorMinimalParams: IAnchorParams = {
     '2ZQbGRzfGJEihHoDCdS6DTnvrQV9gkj7KdyapmJ1UbXt', // someparam2
     '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
   ],
+}
+
+export const associationMinimalParams: IAssociationParams = {
+  party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+  associationType: 0,
+  action: 'issue',
 }
 
 export const transferMinimalParams: ITransferParams = {
