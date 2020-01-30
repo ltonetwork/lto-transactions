@@ -20,7 +20,7 @@ export function lease(paramsOrTx: any, seed?: TSeedTypes): ILeaseTransaction & W
     senderPublicKey,
     amount: paramsOrTx.amount,
     recipient: paramsOrTx.recipient,
-    fee: fee(paramsOrTx, 100000),
+    fee: fee(paramsOrTx, 100000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
     id: '',

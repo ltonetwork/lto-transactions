@@ -9,7 +9,8 @@ export enum TRANSACTION_TYPE {
   DATA = 12,
   SET_SCRIPT = 13,
   ANCHOR = 15,
-  ASSOCIATION = 16,
+  INVOKE_ASSOCIATION = 16,
+  REVOKE_ASSOCIATION = 17,
 }
 
 export enum DATA_FIELD_TYPE {
@@ -74,7 +75,8 @@ export type TTx<LONG = string | number> =
   | ISetScriptTransaction<LONG>
   | IDataTransaction<LONG>
   | IAnchorTransaction<LONG>
-  | IAssociationTransaction<LONG>
+  | IInvokeAssociationTransaction<LONG>
+  | IRevokeAssociationTransaction<LONG>
 
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
@@ -109,16 +111,27 @@ export interface IAnchorTransaction<LONG = string | number> extends ITransaction
   anchors: string[]
 }
 
-/**
- * Used for association transactions.
- * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
- */
-export interface IAssociationTransaction<LONG = string | number> extends ITransaction<LONG> {
-  type: TRANSACTION_TYPE.ASSOCIATION
+export interface IAssociationTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
+  sender: string,
   party: string,
   associationType: LONG,
   hash?: string | null,
-  action: string,
+}
+
+/**
+ * Used for invoking association transactions.
+ * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
+ */
+export interface IInvokeAssociationTransaction<LONG = string | number> extends IAssociationTransaction<LONG> {
+  type: TRANSACTION_TYPE.INVOKE_ASSOCIATION,
+}
+
+/**
+ * Used for revoking association transactions.
+ * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
+ */
+export interface IRevokeAssociationTransaction<LONG = string | number> extends IAssociationTransaction<LONG> {
+  type: TRANSACTION_TYPE.REVOKE_ASSOCIATION,
 }
 
 /**
@@ -286,9 +299,9 @@ export interface IAnchorParams<LONG = string | number> extends IBasicParams<LONG
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
  */
-export interface IAssociationParams<LONG = string | number> extends IBasicParams<LONG> {
+export interface IAssociationParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
   party: string,
   associationType: LONG,
   hash?: string | null,
-  action: string,
+  sender?: string,
 }

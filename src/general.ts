@@ -22,7 +22,7 @@ import { data } from './transactions/data'
 import { anchor } from './transactions/anchor'
 import { massTransfer } from './transactions/mass-transfer'
 import { setScript } from './transactions/set-script'
-import { association } from "./transactions/association";
+import { invokeAssociation, revokeAssociation } from "./transactions/association";
 
 export interface WithTxType {
   type: TRANSACTION_TYPE
@@ -35,7 +35,8 @@ export const txTypeMap: { [type: number]: { sign: (tx: TTx | TTxParams & WithTxT
   [TRANSACTION_TYPE.MASS_TRANSFER]: { sign: (x, seed) => massTransfer(x as IMassTransferTransaction, seed) },
   [TRANSACTION_TYPE.DATA]: { sign: (x, seed) => data(x as IDataTransaction, seed) },
   [TRANSACTION_TYPE.ANCHOR]: { sign: (x, seed) => anchor(x as IAnchorTransaction, seed) },
-  [TRANSACTION_TYPE.ASSOCIATION]: { sign: (x, seed) => association(x as IAssociationTransaction, seed) },
+  [TRANSACTION_TYPE.INVOKE_ASSOCIATION]: { sign: (x, seed) => invokeAssociation(x as IAssociationTransaction, seed) },
+  [TRANSACTION_TYPE.REVOKE_ASSOCIATION]: { sign: (x, seed) => revokeAssociation(x as IAssociationTransaction, seed) },
   [TRANSACTION_TYPE.SET_SCRIPT]: { sign: (x, seed) => setScript(x as ISetScriptTransaction, seed) },
 }
 
@@ -77,7 +78,7 @@ export function verify(obj: TTx, proofN = 0, publicKey?: string): boolean {
  * @param nodeUrl - node address to send tx to. E.g. https://nodes.lto.network/
  */
 export function broadcast(tx: TTx, nodeUrl: string) {
-  return axios.post('transactions/broadcast', json.stringifyTx(tx), {
+  return axios.post('transactions/broadcast', tx, {
     baseURL: nodeUrl,
     headers: { 'content-type': 'application/json' },
   })

@@ -1,12 +1,11 @@
 import {
   WithProofs,
-  TTxParams,
   TTx,
   IBasicParams,
   WithSender
 } from './transactions'
 import { TSeedTypes } from './types'
-import { publicKey } from '@lto-network/lto-crypto'
+import {publicKey, address } from '@lto-network/lto-crypto'
 import axios from 'axios'
 
 export const mapObj = <T, U, K extends string>(obj: Record<K, T>, f: (v: T) => U): Record<K, U> =>
@@ -18,6 +17,14 @@ export function getSenderPublicKey(seedsAndIndexes: [string, number?][], params:
     throw new Error('Please provide either seed or senderPublicKey')
   else {
     return params.senderPublicKey || publicKey(seedsAndIndexes[0][0])
+  }
+}
+
+export function getSenderAddress(seedsAndIndexes: [string, number?][], chainId: number) {
+  if (seedsAndIndexes.length === 0)
+    throw new Error('Please provide a seed');
+  else {
+    return address(seedsAndIndexes[0][0], `${chainId}`)
   }
 }
 

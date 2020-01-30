@@ -59,7 +59,6 @@ export const anchorMinimalParams: IAnchorParams = {
 export const associationMinimalParams: IAssociationParams = {
   party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
   associationType: 0,
-  action: 'issue',
 }
 
 export const transferMinimalParams: ITransferParams = {
