@@ -1,10 +1,13 @@
-# lto-transactions  [![npm version](https://badge.fury.io/js/%40lto-network%2Flto-transactions.svg)](https://badge.fury.io/js/%40lto-network%2Flto-transactions)
+# lto-transactions  
 
-[![License][license-image]][license-url] ![Coverage badge gree][coverage-badge-green]
+[![License][license-image]][license-url] [![npm version][npm-image]][npm-url] [![Build Status][git-image]][git-url]
 
 [license-url]: https://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
-[coverage-badge-green]:https://img.shields.io/badge/Coverage-98.77%25-brightgreen.svg
+[npm-url]: https://badge.fury.io/js/%40lto-network%2Flto-transactions
+[npm-image]: https://badge.fury.io/js/%40lto-network%2Flto-transactions.svg 
+[git-url]: https://travis-ci.com/ltonetwork/lto-transactions
+[git-image]: https://travis-ci.com/ltonetwork/lto-transactions.svg?branch=master
 
 Using this library you can easily create and sign transactions for LTO blockchain.
 It also allows you to multi-sign existing transactions or create them without signature at all.
