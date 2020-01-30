@@ -20,7 +20,7 @@ export function transfer(paramsOrTx: any, seed?: TSeedTypes): ITransferTransacti
     recipient: paramsOrTx.recipient,
     amount: paramsOrTx.amount,
     attachment: paramsOrTx.attachment || '',
-    fee: fee(paramsOrTx, 100000),
+    fee: fee(paramsOrTx, 100000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
     id: '',

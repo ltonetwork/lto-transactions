@@ -6,31 +6,65 @@ import {
   WithSender,
 } from '../transactions'
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
-import { addProof, getSenderPublicKey, convertToPairs, fee } from '../generic'
+import {addProof, getSenderPublicKey, convertToPairs, fee, getSenderAddress, networkByte } from '../generic'
 import { TSeedTypes } from '../types'
 import { binary } from '@lto-network/lto-marshall'
 
 /* @echo DOCS */
-export function association(params: IAssociationParams, seed: TSeedTypes): IAssociationTransaction & WithId
-export function association(paramsOrTx: IAssociationParams & WithSender | IAssociationTransaction, seed?: TSeedTypes): IAssociationTransaction & WithId
-export function association(paramsOrTx: any, seed?: TSeedTypes): IAssociationTransaction {
-  const type = TRANSACTION_TYPE.ASSOCIATION
+export function invokeAssociation(params: IAssociationParams, seed: TSeedTypes): IAssociationTransaction & WithId
+export function invokeAssociation(paramsOrTx: IAssociationParams & WithSender | IAssociationTransaction, seed?: TSeedTypes): IAssociationTransaction & WithId
+export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociationTransaction {
+  const type = TRANSACTION_TYPE.INVOKE_ASSOCIATION
   const version = paramsOrTx.version || 1
   const seedsAndIndexes = convertToPairs(seed)
   const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
+  const sender = paramsOrTx.sender;
 
   const tx: IAssociationTransaction & WithId = {
+    id: '',
     type,
     version,
     senderPublicKey,
-    fee: fee(paramsOrTx, 100000),
+    sender,
+    chainId: networkByte(paramsOrTx.chainId, 87),
+    fee: fee(paramsOrTx, 100000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
-    id: '9NrYcPr6zN7rr9nypvuQHSTToNniyYXKiDFK3UDeQ6F8',
     party: paramsOrTx.party,
     associationType: paramsOrTx.associationType,
-    hash: paramsOrTx.hash || null,
-    action: paramsOrTx.action,
+    hash: paramsOrTx.hash ? paramsOrTx.hash : ''
+  }
+
+  const bytes = binary.serializeTx(tx)
+
+  seedsAndIndexes.forEach(([s, i]) => addProof(tx, signBytes(bytes, s), i))
+  tx.id = hashBytes(bytes)
+
+  return tx
+}
+
+export function revokeAssociation(params: IAssociationParams, seed: TSeedTypes): IAssociationTransaction & WithId
+export function revokeAssociation(paramsOrTx: IAssociationParams & WithSender | IAssociationTransaction, seed?: TSeedTypes): IAssociationTransaction & WithId
+export function revokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociationTransaction {
+  const type = TRANSACTION_TYPE.REVOKE_ASSOCIATION
+  const version = paramsOrTx.version || 1
+  const seedsAndIndexes = convertToPairs(seed)
+  const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
+  const sender = paramsOrTx.sender;
+
+  const tx: IAssociationTransaction & WithId = {
+    id: '',
+    type,
+    version,
+    senderPublicKey,
+    sender,
+    chainId: networkByte(paramsOrTx.chainId, 87),
+    fee: fee(paramsOrTx, 100000000),
+    timestamp: paramsOrTx.timestamp || Date.now(),
+    proofs: paramsOrTx.proofs || [],
+    party: paramsOrTx.party,
+    associationType: paramsOrTx.associationType,
+    hash: paramsOrTx.hash ? paramsOrTx.hash : ''
   }
 
   const bytes = binary.serializeTx(tx)

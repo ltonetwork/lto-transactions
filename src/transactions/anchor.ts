@@ -1,6 +1,6 @@
 import { TRANSACTION_TYPE, IAnchorTransaction, IAnchorParams, WithId, WithSender } from '../transactions'
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
-import { addProof, getSenderPublicKey, convertToPairs, fee } from '../generic'
+import {addProof, getSenderPublicKey, convertToPairs, fee } from '../generic'
 import { TSeedTypes } from '../types'
 import { binary } from '@lto-network/lto-marshall'
 
@@ -17,7 +17,7 @@ export function anchor(paramsOrTx: any, seed?: TSeedTypes): IAnchorTransaction {
     type,
     version,
     senderPublicKey,
-    fee: fee(paramsOrTx, 100000),
+    fee: fee(paramsOrTx, 25000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
     id: '',
