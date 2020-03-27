@@ -10,7 +10,7 @@ export function cancelLease(params: ICancelLeaseParams, seed: TSeedTypes): ICanc
 export function cancelLease(paramsOrTx: ICancelLeaseParams & WithSender | ICancelLeaseTransaction, seed?: TSeedTypes): ICancelLeaseTransaction & WithId
 export function cancelLease(paramsOrTx: any, seed?: TSeedTypes): ICancelLeaseTransaction & WithId {
   const type = TRANSACTION_TYPE.CANCEL_LEASE
-  const version = paramsOrTx.version || 2
+  const version = paramsOrTx.version || 1
   const seedsAndIndexes = convertToPairs(seed)
   const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
 

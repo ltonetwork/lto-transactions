@@ -11,6 +11,8 @@ export enum TRANSACTION_TYPE {
   ANCHOR = 15,
   INVOKE_ASSOCIATION = 16,
   REVOKE_ASSOCIATION = 17,
+  SPONSOR = 18,
+  CANCEL_SPONSOR = 19,
 }
 
 export enum DATA_FIELD_TYPE {
@@ -77,6 +79,8 @@ export type TTx<LONG = string | number> =
   | IAnchorTransaction<LONG>
   | IInvokeAssociationTransaction<LONG>
   | IRevokeAssociationTransaction<LONG>
+  | ISponsorTransaction<LONG>
+  | ICancelSponsorTransaction<LONG>
 
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
@@ -169,6 +173,16 @@ export interface IMassTransferTransaction<LONG = string | number> extends ITrans
   assetId?: string | null
 }
 
+export interface ISponsorTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
+  type: TRANSACTION_TYPE.SPONSOR,
+  recipient: string,
+}
+
+export interface ICancelSponsorTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
+  type: TRANSACTION_TYPE.CANCEL_SPONSOR,
+  recipient: string,
+}
+
 export interface DataEntry {
   key: string
   type: DATA_FIELD_TYPE
@@ -192,6 +206,8 @@ export type TTxParams<LONG = string | number> =
   | IMassTransferParams<LONG>
   | ISetScriptParams<LONG>
   | ITransferParams<LONG>
+  | IAssociationParams<LONG>
+  | ISponsorParams<LONG>
 
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
@@ -304,4 +320,12 @@ export interface IAssociationParams<LONG = string | number> extends IBasicParams
   associationType: LONG,
   hash?: string | null,
   sender?: string,
+}
+
+export interface ISponsorParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
+  recipient: string,
+}
+
+export interface ICancelSponsorParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
+  recipient: string,
 }

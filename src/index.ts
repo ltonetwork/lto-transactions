@@ -11,6 +11,8 @@ export { anchor } from './transactions/anchor'
 export * from './transactions/association'
 export { transfer } from './transactions/transfer'
 export { setScript } from './transactions/set-script'
+export { sponsor }from './transactions/sponsor'
+export { cancelSponsor }from './transactions/cancel-sponsor'
 export { signTx, broadcast, verify, serialize, addressBalance, addressDataByKey } from './general'
 export { waitForTx } from './generic'
 
