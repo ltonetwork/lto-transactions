@@ -7,7 +7,7 @@ import {
   IMassTransferParams,
   ISetScriptParams,
   ITransferParams,
-  TRANSACTION_TYPE
+  TRANSACTION_TYPE, ISponsorParams, ICancelSponsorParams
 } from '../src/transactions'
 
 export const leaseMinimalParams: ILeaseParams = {
@@ -68,6 +68,14 @@ export const transferMinimalParams: ITransferParams = {
 
 export const setScriptMinimalParams: ISetScriptParams = {
   script: 'AQa3b8tH',
+}
+
+export const sponsorMinimalParams: ISponsorParams = {
+  recipient: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+}
+
+export const cancelSponsorMinimalParams: ICancelSponsorParams = {
+  recipient: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
 }
 
 export const minimalParams = {

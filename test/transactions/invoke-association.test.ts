@@ -1,5 +1,5 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
-import {anchor, invokeAssociation} from '../../src'
+import { invokeAssociation } from '../../src'
 import { associationMinimalParams } from '../minimalParams'
 import { binary } from '@lto-network/lto-marshall'
 
