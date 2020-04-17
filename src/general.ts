@@ -12,7 +12,7 @@ import {
   ITransferTransaction,
   TRANSACTION_TYPE,
   TTx,
-  TTxParams,
+  TTxParams, WithId,
 } from './transactions'
 import { TSeedTypes } from './types'
 import { transfer } from './transactions/transfer'
@@ -94,6 +94,17 @@ export function broadcast(tx: TTx, nodeUrl: string) {
 export function addressBalance(address: string, nodeUrl: string): Promise<number> {
   return axios.get(`addresses/balance/${address}`, { baseURL: nodeUrl })
     .then(x => x.data && x.data.balance)
+    .catch(e => Promise.reject(e.response && e.response.status === 400 ? new Error(e.response.data.message) : e))
+}
+
+/**
+ * Retrieve all the active leases of an address
+ * @param address - lto address as base58 string
+ * @param nodeUrl - node address to ask balance from. E.g. https://nodes.lto.network/
+ */
+export function activeLeases(address: string, nodeUrl: string): Promise<(ILeaseTransaction & WithId)[]> {
+  return axios.get(`leasing/active/${address}`, { baseURL: nodeUrl })
+    .then(x => x.data)
     .catch(e => Promise.reject(e.response && e.response.status === 400 ? new Error(e.response.data.message) : e))
 }
 
