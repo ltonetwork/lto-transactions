@@ -8,10 +8,10 @@ import { binary } from '@lto-network/lto-marshall'
 export function sponsor(params: ISponsorParams, seed: TSeedTypes): ISponsorTransaction & WithId
 export function sponsor(paramsOrTx: ISponsorParams & WithSender | ISponsorTransaction, seed?: TSeedTypes): ISponsorTransaction & WithId
 export function sponsor(paramsOrTx: any, seed?: TSeedTypes): ISponsorTransaction {
-  const type = TRANSACTION_TYPE.SPONSOR;
-  const version = paramsOrTx.version || 1;
-  const seedsAndIndexes = convertToPairs(seed);
-  const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx);
+  const type = TRANSACTION_TYPE.SPONSOR
+  const version = paramsOrTx.version || 1
+  const seedsAndIndexes = convertToPairs(seed)
+  const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
 
   const tx: ISponsorTransaction & WithId = {
     type,

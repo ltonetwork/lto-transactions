@@ -78,7 +78,7 @@ export const anchorTx = { type: 15,
   anchors: [
     '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX', // someparam
     '2ZQbGRzfGJEihHoDCdS6DTnvrQV9gkj7KdyapmJ1UbXt', // someparam2
-    '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
+    '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE',  // someparam3
   ] }
 
 export const invokeAssociationTx = { type: 16,
@@ -91,7 +91,7 @@ export const invokeAssociationTx = { type: 16,
   id: '9NrYcPr6zN7rr9nypvuQHSTToNniyYXKiDFK3UDeQ6F8',
   party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
   associationType: 2,
-  hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX'
+  hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX',
 }
 
 export const revokeAssociationTx = { type: 17,
@@ -104,7 +104,7 @@ export const revokeAssociationTx = { type: 17,
   id: '9NrYcPr6zN7rr9nypvuQHSTToNniyYXKiDFK3UDeQ6F8',
   party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
   associationType: 2,
-  hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX'
+  hash: '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX',
 }
 
 export const exampleTxs = {
