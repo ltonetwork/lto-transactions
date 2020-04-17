@@ -13,7 +13,7 @@ export { transfer } from './transactions/transfer'
 export { setScript } from './transactions/set-script'
 export { sponsor }from './transactions/sponsor'
 export { cancelSponsor }from './transactions/cancel-sponsor'
-export { signTx, broadcast, verify, serialize, addressBalance, addressDataByKey } from './general'
+export { signTx, broadcast, verify, serialize, addressBalance, addressDataByKey, activeLeases } from './general'
 export { waitForTx } from './generic'
 
 // Export interfaces
