@@ -18,7 +18,7 @@ export function sponsor(paramsOrTx: any, seed?: TSeedTypes): ISponsorTransaction
     version,
     senderPublicKey,
     recipient: paramsOrTx.recipient,
-    chainId: networkByte(paramsOrTx.chainId, 87),
+    chainId: networkByte(paramsOrTx.chainId, 76),
     fee: fee(paramsOrTx, 500000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
