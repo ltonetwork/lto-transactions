@@ -102,8 +102,6 @@ export interface ITransferTransaction<LONG = string | number> extends ITransacti
   recipient: string
   amount: LONG
   attachment: string
-  feeAssetId?: string | null
-  assetId?: string | null
 }
 
 /**
@@ -170,7 +168,6 @@ export interface IMassTransferTransaction<LONG = string | number> extends ITrans
   type: TRANSACTION_TYPE.MASS_TRANSFER
   transfers: IMassTransferItem<LONG>[]
   attachment: string
-  assetId?: string | null
 }
 
 export interface ISponsorTransaction<LONG = string | number> extends ITransaction<LONG>, WithChainId {
@@ -275,7 +272,6 @@ export interface IMassTransferParams<LONG = string | number> extends IBasicParam
    * Bytearray encoded as base string
    */
   attachment?: string
-  assetId?: string | null
 }
 
 /**
@@ -294,11 +290,6 @@ export interface ISetScriptParams<LONG = string | number> extends IBasicParams<L
 export interface ITransferParams<LONG = string | number> extends IBasicParams<LONG> {
   recipient: string
   amount: LONG
-  assetId?: string | null
-  /**
-   * Fee can be paid in custom token if sponsorship has been set for this token
-   */
-  feeAssetId?: string | null
   /**
    * Bytearray encoded as base58 string
    */

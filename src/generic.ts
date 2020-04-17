@@ -22,7 +22,7 @@ export function getSenderPublicKey(seedsAndIndexes: [string, number?][], params:
 
 export function getSenderAddress(seedsAndIndexes: [string, number?][], chainId: number) {
   if (seedsAndIndexes.length === 0)
-    throw new Error('Please provide a seed');
+    throw new Error('Please provide a seed')
   else {
     return address(seedsAndIndexes[0][0], `${chainId}`)
   }

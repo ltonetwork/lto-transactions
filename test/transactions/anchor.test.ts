@@ -31,7 +31,7 @@ describe('anchor', () => {
       anchors: [
         '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX', // someparam
         '2ZQbGRzfGJEihHoDCdS6DTnvrQV9gkj7KdyapmJ1UbXt', // someparam2
-        '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE'  // someparam3
+        '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE',  // someparam3
       ],
       timestamp: 100000,
     }

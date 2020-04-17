@@ -22,7 +22,7 @@ import { data } from './transactions/data'
 import { anchor } from './transactions/anchor'
 import { massTransfer } from './transactions/mass-transfer'
 import { setScript } from './transactions/set-script'
-import { invokeAssociation, revokeAssociation } from "./transactions/association";
+import { invokeAssociation, revokeAssociation } from './transactions/association'
 
 export interface WithTxType {
   type: TRANSACTION_TYPE

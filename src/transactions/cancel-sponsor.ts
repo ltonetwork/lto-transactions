@@ -13,17 +13,17 @@ import { binary } from '@lto-network/lto-marshall'
 export function cancelSponsor(params: ICancelSponsorParams, seed: TSeedTypes): ICancelSponsorTransaction & WithId
 export function cancelSponsor(paramsOrTx: ICancelSponsorParams & WithSender | ICancelSponsorTransaction, seed?: TSeedTypes): ICancelSponsorTransaction & WithId
 export function cancelSponsor(paramsOrTx: any, seed?: TSeedTypes): ICancelSponsorTransaction {
-  const type = TRANSACTION_TYPE.CANCEL_SPONSOR;
-  const version = paramsOrTx.version || 1;
-  const seedsAndIndexes = convertToPairs(seed);
-  const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx);
+  const type = TRANSACTION_TYPE.CANCEL_SPONSOR
+  const version = paramsOrTx.version || 1
+  const seedsAndIndexes = convertToPairs(seed)
+  const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
 
   const tx: ICancelSponsorTransaction & WithId = {
     type,
     version,
     senderPublicKey,
     recipient: paramsOrTx.recipient,
-    chainId: networkByte(paramsOrTx.chainId, 87),
+    chainId: networkByte(paramsOrTx.chainId, 76),
     fee: fee(paramsOrTx, 500000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],

@@ -18,7 +18,7 @@ export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
   const version = paramsOrTx.version || 1
   const seedsAndIndexes = convertToPairs(seed)
   const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
-  const sender = paramsOrTx.sender;
+  const sender = paramsOrTx.sender
 
   const tx: IAssociationTransaction & WithId = {
     id: '',
@@ -26,13 +26,13 @@ export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
     version,
     senderPublicKey,
     sender,
-    chainId: networkByte(paramsOrTx.chainId, 87),
+    chainId: networkByte(paramsOrTx.chainId, 76),
     fee: fee(paramsOrTx, 100000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
     party: paramsOrTx.party,
     associationType: paramsOrTx.associationType,
-    hash: paramsOrTx.hash ? paramsOrTx.hash : ''
+    hash: paramsOrTx.hash ? paramsOrTx.hash : '',
   }
 
   const bytes = binary.serializeTx(tx)
@@ -50,7 +50,7 @@ export function revokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
   const version = paramsOrTx.version || 1
   const seedsAndIndexes = convertToPairs(seed)
   const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
-  const sender = paramsOrTx.sender;
+  const sender = paramsOrTx.sender
 
   const tx: IAssociationTransaction & WithId = {
     id: '',
@@ -58,13 +58,13 @@ export function revokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
     version,
     senderPublicKey,
     sender,
-    chainId: networkByte(paramsOrTx.chainId, 87),
+    chainId: networkByte(paramsOrTx.chainId, 76),
     fee: fee(paramsOrTx, 100000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
     party: paramsOrTx.party,
     associationType: paramsOrTx.associationType,
-    hash: paramsOrTx.hash ? paramsOrTx.hash : ''
+    hash: paramsOrTx.hash ? paramsOrTx.hash : '',
   }
 
   const bytes = binary.serializeTx(tx)
