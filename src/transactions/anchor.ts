@@ -17,7 +17,7 @@ export function anchor(paramsOrTx: any, seed?: TSeedTypes): IAnchorTransaction {
     type,
     version,
     senderPublicKey,
-    fee: fee(paramsOrTx, 25000000),
+    fee: fee(paramsOrTx, 35000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
     id: '',
