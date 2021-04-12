@@ -31,9 +31,7 @@ const { transfer } = require('@lto-network/lto-transactions')
 const seed = 'some example seed phrase'
 const signedTranserTx = transfer({ 
   amount: 1,
-  recipient: '3JmEPiCpfL4p5WswT21ZpWKND5apPs2hTMB',
-  //Timestamp is optional but it was overrided, in case timestamp is not provided it will fallback to Date.now(). You can set any oftional params yourself. go check full docs
-  timestamp: 1536917842558 
+  recipient: '3JmEPiCpfL4p5WswT21ZpWKND5apPs2hTMB'
 }, seed)
 ```
 
