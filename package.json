@@ -55,6 +55,6 @@
     "@lto-network/lto-crypto": "^1.0.0",
     "@lto-network/lto-marshall": "^1.2.1",
     "ajv": "^6.5.5",
-    "axios": "^0.18.1"
+    "axios": "^0.21.1"
   }
 }
