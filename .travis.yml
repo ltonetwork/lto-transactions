@@ -2,17 +2,36 @@ language: node_js
 node_js:
   - "12.14"
 
+env:
+  global:
+    - GH_REPO: "https://github.com/ltonetwork/lto-transactions.git"
+
 script:
   - npm run lint
   - npm run test
 
 before_deploy:
+  - "echo 'ready to deploy?'"
   - npm run build
+  - npm version patch
 
 deploy:
-  provider: npm
-  email: "$NPM_EMAIL"
-  api_key: "$NPM_TOKEN"
-  skip_cleanup: true
-  on:
-    branch: master
+  - provider: npm
+    email: "$NPM_EMAIL"
+    api_key: "$NPM_TOKEN"
+    skip_cleanup: true
+    on:
+      repo: "$GH_REPO"
+      branch: master
+      tag: true
+  - provider: releases
+    api_key: "GITHUB OAUTH TOKEN"
+    file: "./dist"
+    skip_cleanup: true
+    on:
+      repo: "$GH_REPO"
+      branch: master
+      tag: true
+
+after_deploy:
+- "echo 'deployed!'"
