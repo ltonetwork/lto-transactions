@@ -120,3 +120,6 @@ dist
 build/tmp
 .idea
 sandbox.spec.ts
+
+github_deploy_key
+github_deploy_key.pub
