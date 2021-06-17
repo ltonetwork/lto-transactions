@@ -1,7 +1,7 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
 import { anchor } from '../../src'
 import { anchorMinimalParams } from '../minimalParams'
-import { binary } from '@lto-network/lto-marshall'
+import { binary } from '../../src/parseSerialize'
 
 describe('anchor', () => {
 

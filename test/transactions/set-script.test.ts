@@ -1,7 +1,7 @@
 import { verifySignature, publicKey, } from '@lto-network/lto-crypto'
 import { setScript } from '../../src'
 import { ISetScriptTransaction } from '../../src/transactions'
-import { binary } from '@lto-network/lto-marshall'
+import { binary } from '../../src/parseSerialize'
 
 describe('setScript', () => {
 

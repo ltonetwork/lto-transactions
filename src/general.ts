@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { binary, json, serializePrimitives } from '@lto-network/lto-marshall'
 import { verifySignature } from '@lto-network/lto-crypto'
+import { binary, serializePrimitives } from './parseSerialize'
 import {
   ICancelLeaseTransaction,
   IDataTransaction,

@@ -48,16 +48,16 @@ export {
 
 // internal libraries access
 import * as crypto from '@lto-network/lto-crypto'
-import * as marshall from '@lto-network/lto-marshall'
 
 const libs = {
-  crypto,
-  marshall,
+  crypto
 }
 
 import * as seedUtils from './seedUtils'
+import * as parseSerialize from './parseSerialize'
 
 export {
   libs,
-  seedUtils
+  seedUtils,
+  parseSerialize
 }
