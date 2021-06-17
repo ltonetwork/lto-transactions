@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
 describe('Tx serialize/parse', ()=> {
   Object.entries(exampleTxs).forEach(([type, tx]) => {
     it(`Type: ${type}`, () => {
-      const expectedBytes = null;
+      const expectedBytes = null
       const bytes = binary.serializeTx(tx)
       const parsed = binary.parseTx<number>(bytes, parseInt)
       // delete non serializable fields. Should write typesafe excludeKeys function instead

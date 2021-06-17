@@ -1,6 +1,6 @@
-import {json} from "../../src/parseSerialize";
-import Long = require("long");
-import {exampleTxs} from "./exampleTxs";
+import {json} from '../../src/parseSerialize'
+import Long = require('long')
+import {exampleTxs} from './exampleTxs'
 
 describe('Basic serialization', ()=> {
   const txJson = `{"type":12,"version":1,"senderPublicKey":"7GGPvAPV3Gmxo4eswmBRLb6bXXEhAovPinfcwVkA2LJh",
@@ -9,23 +9,23 @@ describe('Basic serialization', ()=> {
   "data":[{"type":"binary","key":"a","value":"base64:AQIDBA=="},{"type":"binary","key":"b","value":"base64:YXNkYQ=="},{"type":"boolean","key":"c","value":true},{"type":"integer","key":"d","value":9223372036854775808}]}`
 
   it('Should not break numbers', () => {
-    const parsed = json.parseTx(txJson);
+    const parsed = json.parseTx(txJson)
     expect(typeof parsed.data[3].value).toBe('string')
-  });
+  })
 
   it('Should convertLongFields numbers using factory', () => {
-    const parsed = json.parseTx(txJson, Long.fromString);
+    const parsed = json.parseTx(txJson, Long.fromString)
     expect(parsed.data[3].value).toBeInstanceOf(Long)
   })
 
-});
+})
 
 describe('All tx json to and from', ()=>{
   Object.entries(exampleTxs).forEach(([type, tx]) => {
     it(`Type: ${type}. toJSON, fromJSON`, () => {
-      const str = json.stringifyTx(tx);
+      const str = json.stringifyTx(tx)
       const parsed = json.parseTx(str)
       expect(parsed).toMatchObject(tx)
     })
-  });
-});
+  })
+})

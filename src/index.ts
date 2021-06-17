@@ -50,7 +50,7 @@ export {
 import * as crypto from '@lto-network/lto-crypto'
 
 const libs = {
-  crypto
+  crypto,
 }
 
 import * as seedUtils from './seedUtils'
