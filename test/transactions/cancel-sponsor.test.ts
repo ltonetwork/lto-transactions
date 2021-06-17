@@ -1,7 +1,7 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
 import { cancelSponsor } from '../../src'
 import { cancelSponsorMinimalParams } from '../minimalParams'
-import { binary } from '@lto-network/lto-marshall'
+import { binary } from '../../src/parseSerialize'
 
 describe('cancelSponsor', () => {
 

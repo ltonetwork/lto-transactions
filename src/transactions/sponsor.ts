@@ -2,7 +2,7 @@ import {TRANSACTION_TYPE, ISponsorParams, WithId, WithSender, ISponsorTransactio
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
 import {addProof, getSenderPublicKey, convertToPairs, fee, networkByte} from '../generic'
 import { TSeedTypes } from '../types'
-import { binary } from '@lto-network/lto-marshall'
+import { binary } from '../parseSerialize'
 
 /* @echo DOCS */
 export function sponsor(params: ISponsorParams, seed: TSeedTypes): ISponsorTransaction & WithId

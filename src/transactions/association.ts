@@ -6,9 +6,9 @@ import {
   WithSender,
 } from '../transactions'
 import { signBytes, hashBytes } from '@lto-network/lto-crypto'
-import {addProof, getSenderPublicKey, convertToPairs, fee, getSenderAddress, networkByte } from '../generic'
+import {addProof, getSenderPublicKey, convertToPairs, fee, networkByte } from '../generic'
 import { TSeedTypes } from '../types'
-import { binary } from '@lto-network/lto-marshall'
+import { binary } from '../parseSerialize'
 
 /* @echo DOCS */
 export function invokeAssociation(params: IAssociationParams, seed: TSeedTypes): IAssociationTransaction & WithId

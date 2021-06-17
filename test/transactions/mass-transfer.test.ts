@@ -1,7 +1,7 @@
 import { publicKey, verifySignature } from '@lto-network/lto-crypto'
 import { massTransfer } from '../../src'
 import { massTransferMinimalParams } from '../minimalParams'
-import { binary } from '@lto-network/lto-marshall'
+import { binary } from '../../src/parseSerialize'
 
 describe('massTransfer', () => {
 
