@@ -2,8 +2,7 @@
 set -ev
 
 if [ "${TRAVIS_TAG}" = "" ]; then
-  echo "Running version ..."
-fi
+  npm version patch
 
-#  if NOT TRAVIS_TAG > run npm version and push a new commit/tag
-# else nothing
+  git push --tags
+fi
