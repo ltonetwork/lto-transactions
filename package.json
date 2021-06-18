@@ -1,6 +1,6 @@
 {
   "name": "@lto-network/lto-transactions",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Build and sign(multi-sign) transactions for LTO blockchain.",
   "keywords": [
     "lto",
