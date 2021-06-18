@@ -2,20 +2,36 @@ language: node_js
 node_js:
   - "12.14"
 
-script:
-  - npm run test
+before_script: npm run build
 
-before_deploy:
-  - "echo 'ready to deploy?'"
-  - npm run build
+jobs:
+  include:
+    - stage: test
+      script:
+        - echo: "Running tests ..."
 
-deploy:
-  - provider: npm
-    email: "$NPM_EMAIL"
-    api_key: "$NPM_TOKEN"
-    skip_cleanup: true
-    on:
-      tag: true
+    - stage: npm version
+      script:
+        - echo "Running npm version ..."
+        on:
+          tags: true
+          branch: master
 
-after_deploy:
-- "echo 'deployed!'"
+    - stage: npm release
+      script: 
+        - echo "Running npm release ..."
+
+      deploy:
+        provider: npm
+        email: $NPM_EMAIL
+        # api_key: $NPM_TOKEN
+        api_key: "SHOULD FAIL"
+        cleanup: false
+        on: 
+          tags: true
+          branch: master
+
+stages:
+  - test
+  - name: npm version
+  - name: npm release
