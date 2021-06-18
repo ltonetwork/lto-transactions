@@ -2,36 +2,25 @@ language: node_js
 node_js:
   - "12.14"
 
-before_script: npm run build
-
 jobs:
   include:
     - stage: test
-      script:
-        - echo: "Running tests ..."
-
-    - stage: npm version
-      script:
-        - echo "Running npm version ..."
-        on:
-          tags: true
-          branch: master
-
-    - stage: npm release
       script: 
-        - echo "Running npm release ..."
+        - echo "Running test script ..."
+        - npm run test
 
+    - stage: version
+      script: ./scripts/version.sh
+        # on:
+        #   branch: master
+
+    - stage: release
+      script: 
+        - echo "Running release script ..."
       deploy:
         provider: npm
         email: $NPM_EMAIL
-        # api_key: $NPM_TOKEN
         api_key: "SHOULD FAIL"
-        cleanup: false
         on: 
           tags: true
-          branch: master
-
-stages:
-  - test
-  - name: npm version
-  - name: npm release
+          # branch: master
