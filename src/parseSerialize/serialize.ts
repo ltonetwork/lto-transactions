@@ -61,7 +61,7 @@ export const serializerFromSchema = <LONG = string | number>(schema: TSchema, fr
 
     // FIXME: HACK for boolean argument type.
     // We cannot distinguish schema for 'true' from schema for 'false' when getting item by key since they both have 'boolean' string key
-    if (anyOfItem.strKey === 'boolean' && anyOfItem.key === 6 && obj.value === false) anyOfItem.key = 7;
+    if (anyOfItem.strKey === 'boolean' && anyOfItem.key === 6 && obj.value === false) anyOfItem.key = 7
     // HACK END
 
     serializer = serializerFromSchema(anyOfItem.schema, fromLongConverter)

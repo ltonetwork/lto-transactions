@@ -13,7 +13,7 @@ import {
   BASE64_STRING,
   one,
   zero,
-} from '../../src/parseSerialize/serializePrimitives';
+} from '../../src/parseSerialize/serializePrimitives'
 
 const string = 'TestString'
 const bytes = [84, 101, 115, 116, 83, 116, 114, 105, 110, 103]
