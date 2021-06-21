@@ -9,7 +9,7 @@ jobs:
         - npm run test
 
     - stage: Version
-      if: tag IS NOT present AND branch = master
+      if: tag IS NOT present AND branch = master AND type IS NOT pull_request
       script:
         # Set up SSH key for GitHub
         - >-
@@ -29,7 +29,7 @@ jobs:
         - git push --tags
 
     - stage: Release
-      if: tag IS present AND branch = master
+      if: tag IS present AND branch = master AND type IS NOT pull_request
       script: npm run build
       deploy:
         provider: npm
