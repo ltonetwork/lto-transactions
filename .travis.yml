@@ -31,7 +31,7 @@ jobs:
         tags: false
 
     - stage: Release
-      if: tag IS present AND branch = master
+      if: tag IS present AND commit_message =~ /^Version /
       script: npm run build
       deploy:
         provider: npm
