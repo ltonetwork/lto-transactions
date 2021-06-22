@@ -5,7 +5,7 @@ import {
   WithId,
   WithSender,
 } from '../transactions'
-import { signBytes, hashBytes } from '@lto-network/lto-crypto'
+import { signBytes, hashBytes, chainIdOf } from '@lto-network/lto-crypto'
 import {addProof, getSenderPublicKey, convertToPairs, fee, networkByte } from '../generic'
 import { TSeedTypes } from '../types'
 import { binary } from '../parseSerialize'
@@ -19,6 +19,7 @@ export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
   const seedsAndIndexes = convertToPairs(seed)
   const senderPublicKey = getSenderPublicKey(seedsAndIndexes, paramsOrTx)
   const sender = paramsOrTx.sender
+  const chainId = chainIdOf(paramsOrTx.party).charCodeAt(0)
 
   const tx: IAssociationTransaction & WithId = {
     id: '',
@@ -26,7 +27,7 @@ export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
     version,
     senderPublicKey,
     sender,
-    chainId: networkByte(paramsOrTx.chainId, 76),
+    chainId: networkByte(paramsOrTx.chainId, chainId),
     fee: fee(paramsOrTx, 100000000),
     timestamp: paramsOrTx.timestamp || Date.now(),
     proofs: paramsOrTx.proofs || [],
