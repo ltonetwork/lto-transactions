@@ -9,7 +9,7 @@ jobs:
         - npm run test
 
     - stage: Version
-      if: tag IS NOT present AND branch = master
+      if: tag IS NOT present AND branch = master AND commit_message !~ /^Version /
       script:
         # Set up SSH key for GitHub
         - >-
@@ -23,10 +23,12 @@ jobs:
         - eval $(ssh-agent -s)
         - ssh-add github_deploy_key
         # Patch for NPM
-        - npm version patch
+        - npm version patch -m "Version %s"
         # Push new tag to GitHub, triggering a new build
         - git remote set-url origin git@github.com:ltonetwork/lto-transactions.git
-        - git push --tags
+        - git push origin HEAD:master --follow-tags
+      on:
+        tags: false
 
     - stage: Release
       if: tag IS present AND branch = master
