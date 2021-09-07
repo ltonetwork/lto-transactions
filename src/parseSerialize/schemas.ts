@@ -329,6 +329,24 @@ export const setScriptSchemaV1: TSchema = {
   ],
 }
 
+// This schema is not 100% correct for transfer-v1, it's a workaround for an issue with the Ledger app in the wallet ui
+// Once ledger app is fixed, this will no longer be needed
+// see the issue: https://github.com/iicc1/ledger-app-lto/issues/3
+export const transferSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.type,
+    txFields.senderPublicKey,
+    txFields.timestamp,
+    txFields.amount,
+    txFields.fee,
+    txFields.recipient,
+    txFields.attachment,
+  ],
+}
+
 export const transferSchemaV2: TSchema = {
   type: 'object',
   schema: [
@@ -375,6 +393,7 @@ export const cancelSponsorSchemaV1: TSchema = {
 export const schemasByTypeMap = {
   [TRANSACTION_TYPE.GENESIS]: {},
   [TRANSACTION_TYPE.TRANSFER]: {
+    1: transferSchemaV1,
     2: transferSchemaV2,
   },
   [TRANSACTION_TYPE.LEASE]: {
