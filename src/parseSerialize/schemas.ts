@@ -387,17 +387,37 @@ export const transferSchemaV1: TSchema = {
   ],
 }
 
+// This schema is not 100% correct for lease-v1, it's a workaround for an issue with the Ledger app in the wallet ui
+// Once ledger app is fixed, this will no longer be needed
+// see the issue: https://github.com/iicc1/ledger-app-lto/issues/3
 export const leaseSchemaV1: TSchema = {
   type: 'object',
   schema: [
     txFields.type,
     txFields.version,
-    txFields.byteConstant(0),
+    txFields.type, // this field shouldn't be here - Ledger workaround
     txFields.senderPublicKey,
     txFields.recipient,
     txFields.amount,
     txFields.fee,
     txFields.timestamp,
+  ],
+}
+
+// This schema is not 100% correct for cancel-lease-v1, it's a workaround for an issue with the Ledger app in the wallet ui
+// Once ledger app is fixed, this will no longer be needed
+// see the issue: https://github.com/iicc1/ledger-app-lto/issues/3
+export const cancelLeaseSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.type, // this field shouldn't be here - Ledger workaround
+    txFields.chainId,
+    txFields.senderPublicKey,
+    txFields.fee,
+    txFields.timestamp,
+    txFields.leaseId,
   ],
 }
 
@@ -415,6 +435,7 @@ export const schemasByTypeMap = {
     2: leaseSchemaV2,
   },
   [TRANSACTION_TYPE.CANCEL_LEASE]: {
+    1: cancelLeaseSchemaV1,
     2: cancelLeaseSchemaV2,
   },
   [TRANSACTION_TYPE.MASS_TRANSFER]: {
