@@ -351,8 +351,8 @@ export const sponsorSchemaV1: TSchema = {
     txFields.chainId,
     txFields.senderPublicKey,
     txFields.recipient,
-    txFields.timestamp,
     txFields.fee,
+    txFields.timestamp,
   ],
 }
 
@@ -364,21 +364,20 @@ export const cancelSponsorSchemaV1: TSchema = {
     txFields.chainId,
     txFields.senderPublicKey,
     txFields.recipient,
-    txFields.timestamp,
     txFields.fee,
+    txFields.timestamp,
   ],
 }
 
-// ************************************************************************
-// This is a workaround for an issue with the Ledger app in the wallet ui
-// Once ledger app is fixed, the "Ledger" schemas will no longer be needed
+// This schema is not 100% correct for transfer-v1, it's a workaround for an issue with the Ledger app in the wallet ui
+// Once ledger app is fixed, this will no longer be needed
 // see the issue: https://github.com/iicc1/ledger-app-lto/issues/3
-export const transferSchemaLedger: TSchema = {
+export const transferSchemaV1: TSchema = {
   type: 'object',
   schema: [
     txFields.type,
     txFields.version,
-    txFields.type,
+    txFields.type, // this field shouldn't be here - Ledger workaround
     txFields.senderPublicKey,
     txFields.timestamp,
     txFields.amount,
@@ -388,12 +387,12 @@ export const transferSchemaLedger: TSchema = {
   ],
 }
 
-export const leaseSchemaLedger: TSchema = {
+export const leaseSchemaV1: TSchema = {
   type: 'object',
   schema: [
     txFields.type,
     txFields.version,
-    txFields.type,
+    txFields.byteConstant(0),
     txFields.senderPublicKey,
     txFields.recipient,
     txFields.amount,
@@ -401,7 +400,6 @@ export const leaseSchemaLedger: TSchema = {
     txFields.timestamp,
   ],
 }
-// ************************************************************************
 
 /**
  * Maps transaction types to schemas object. Schemas are written by keys. 0 - no version, n - version n
@@ -409,11 +407,11 @@ export const leaseSchemaLedger: TSchema = {
 export const schemasByTypeMap = {
   [TRANSACTION_TYPE.GENESIS]: {},
   [TRANSACTION_TYPE.TRANSFER]: {
-    1: transferSchemaLedger,
+    1: transferSchemaV1,
     2: transferSchemaV2,
   },
   [TRANSACTION_TYPE.LEASE]: {
-    1: leaseSchemaLedger,
+    1: leaseSchemaV1,
     2: leaseSchemaV2,
   },
   [TRANSACTION_TYPE.CANCEL_LEASE]: {
