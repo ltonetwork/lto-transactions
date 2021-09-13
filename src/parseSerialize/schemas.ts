@@ -329,24 +329,6 @@ export const setScriptSchemaV1: TSchema = {
   ],
 }
 
-// This schema is not 100% correct for transfer-v1, it's a workaround for an issue with the Ledger app in the wallet ui
-// Once ledger app is fixed, this will no longer be needed
-// see the issue: https://github.com/iicc1/ledger-app-lto/issues/3
-export const transferSchemaV1: TSchema = {
-  type: 'object',
-  schema: [
-    txFields.type,
-    txFields.version,
-    txFields.type,
-    txFields.senderPublicKey,
-    txFields.timestamp,
-    txFields.amount,
-    txFields.fee,
-    txFields.recipient,
-    txFields.attachment,
-  ],
-}
-
 export const transferSchemaV2: TSchema = {
   type: 'object',
   schema: [
@@ -369,8 +351,8 @@ export const sponsorSchemaV1: TSchema = {
     txFields.chainId,
     txFields.senderPublicKey,
     txFields.recipient,
-    txFields.timestamp,
     txFields.fee,
+    txFields.timestamp,
   ],
 }
 
@@ -382,8 +364,40 @@ export const cancelSponsorSchemaV1: TSchema = {
     txFields.chainId,
     txFields.senderPublicKey,
     txFields.recipient,
-    txFields.timestamp,
     txFields.fee,
+    txFields.timestamp,
+  ],
+}
+
+// This schema is not 100% correct for transfer-v1, it's a workaround for an issue with the Ledger app in the wallet ui
+// Once ledger app is fixed, this will no longer be needed
+// see the issue: https://github.com/iicc1/ledger-app-lto/issues/3
+export const transferSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.type, // this field shouldn't be here - Ledger workaround
+    txFields.senderPublicKey,
+    txFields.timestamp,
+    txFields.amount,
+    txFields.fee,
+    txFields.recipient,
+    txFields.attachment,
+  ],
+}
+
+export const leaseSchemaV1: TSchema = {
+  type: 'object',
+  schema: [
+    txFields.type,
+    txFields.version,
+    txFields.byteConstant(0),
+    txFields.senderPublicKey,
+    txFields.recipient,
+    txFields.amount,
+    txFields.fee,
+    txFields.timestamp,
   ],
 }
 
@@ -397,6 +411,7 @@ export const schemasByTypeMap = {
     2: transferSchemaV2,
   },
   [TRANSACTION_TYPE.LEASE]: {
+    1: leaseSchemaV1,
     2: leaseSchemaV2,
   },
   [TRANSACTION_TYPE.CANCEL_LEASE]: {
