@@ -413,7 +413,6 @@ export const cancelLeaseSchemaV1: TSchema = {
     txFields.type,
     txFields.version,
     txFields.type, // this field shouldn't be here - Ledger workaround
-    txFields.chainId,
     txFields.senderPublicKey,
     txFields.fee,
     txFields.timestamp,
