@@ -32,8 +32,11 @@ export const serializerFromSchema = <LONG = string | number>(schema: TSchema, fr
     schema.schema.forEach(field => {
       const [name, schema] = field
       let data
-      // Name as array means than we need to serialize many js fields as one binary object. E.g. we need to add length
-      if (Array.isArray(name)){
+      // Added because byteConstant in schema returns noname. Probably should be implemented in a nicer way
+      if (name == 'noname' && 'toBytes' in schema) {
+        data = schema.toBytes()
+      } else if (Array.isArray(name)){
+        // Name as array means than we need to serialize many js fields as one binary object. E.g. we need to add length
         data = name.reduce((acc, fieldName) => ({...acc, [fieldName]: obj[fieldName]}),{} as any)
       }else{
         data = obj[name]

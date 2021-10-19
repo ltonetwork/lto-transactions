@@ -9,6 +9,8 @@ import {
   ITransferParams,
   TRANSACTION_TYPE, ISponsorParams, ICancelSponsorParams
 } from '../src/transactions'
+import {IAssociationParamsV3} from '../build/tmp/dist/transactions'
+import {WithChainId} from '../dist/transactions'
 
 export const leaseMinimalParams: ILeaseParams = {
   recipient: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
@@ -56,8 +58,24 @@ export const anchorMinimalParams: IAnchorParams = {
   ],
 }
 
+
+export const anchorV3MinimalParams: IAnchorParams & WithChainId = {
+  chainId: 76,
+  anchors: [
+    '7SDYMzGCZVFSwAGs7cFxj2rUBgUB8BVtPnPUuu4itKcX', // someparam
+    '2ZQbGRzfGJEihHoDCdS6DTnvrQV9gkj7KdyapmJ1UbXt', // someparam2
+    '2hy3qKT5PuhWUxe9ACP4HnxRvxzcRqUommTZX4FQp8BE',  // someparam3
+  ],
+}
+
+
 export const associationMinimalParams: IAssociationParams = {
   party: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
+  associationType: 0,
+}
+
+export const associationV3MinimalParams: IAssociationParamsV3 = {
+  recipient: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
   associationType: 0,
 }
 
