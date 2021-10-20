@@ -36,16 +36,13 @@ export function anchor(paramsOrTx: any, seed?: TSeedTypes): IAnchorTransaction {
   const v3tx : IAnchorTransaction & WithId & WithChainId = {
     ...txToSign,
     chainId: networkByte(chainId, 76),
+    sponsorPublicKey,
   }
   const tx = version == 3 ? v3tx : txToSign
 
   const bytes = binary.serializeTx(tx)
-
   seedsAndIndexes.forEach(([s, i]) => addProof(tx, signBytes(bytes, s), i))
   tx.id = hashBytes(bytes)
-  if (version == 3 && sponsorPublicKey) {
-    tx.sponsorPublicKey = sponsorPublicKey
-  }
 
   return tx
 }

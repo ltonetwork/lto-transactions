@@ -347,7 +347,7 @@ export interface IAssociationParams<LONG = string | number> extends IBasicParams
 
 export interface IAssociationParamsV3<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
   recipient: string,
-  senderKeyType: string,
+  senderKeyType?: string,
   associationType: LONG,
   expires?: number,
   hash?: string | null,

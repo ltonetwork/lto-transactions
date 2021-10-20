@@ -11,7 +11,7 @@ import { TSeedTypes } from '../types'
 import { binary } from '../parseSerialize'
 
 /* @echo DOCS */
-export function invokeAssociation(params: IAssociationParams, seed: TSeedTypes): (IAssociationTransaction & WithId) | (IAssociationTransactionV3 & WithId)
+export function invokeAssociation(params: IAssociationParamsV3 | IAssociationParams, seed: TSeedTypes): (IAssociationTransaction & WithId) | (IAssociationTransactionV3 & WithId)
 export function invokeAssociation(paramsOrTx: (IAssociationParamsV3 & WithSender) | (IAssociationParams & WithSender) | IAssociationTransaction, seed?: TSeedTypes): (IAssociationTransaction & WithId) | (IAssociationTransactionV3 & WithId)
 export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociationTransaction | IAssociationTransactionV3 {
   const type = TRANSACTION_TYPE.INVOKE_ASSOCIATION
@@ -63,10 +63,6 @@ export function invokeAssociation(paramsOrTx: any, seed?: TSeedTypes): IAssociat
 
   seedsAndIndexes.forEach(([s, i]) => addProof(tx, signBytes(bytes, s), i))
   tx.id = hashBytes(bytes)
-
-  if (tx === v3Tx && sponsorPublicKey) {
-    tx.sponsorPublicKey = sponsorPublicKey
-  }
 
   return tx
 }

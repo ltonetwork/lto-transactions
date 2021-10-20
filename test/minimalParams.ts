@@ -7,10 +7,11 @@ import {
   IMassTransferParams,
   ISetScriptParams,
   ITransferParams,
-  TRANSACTION_TYPE, ISponsorParams, ICancelSponsorParams
+  TRANSACTION_TYPE, ISponsorParams, ICancelSponsorParams,
+  WithChainId,
+  IAssociationParamsV3
 } from '../src/transactions'
-import {IAssociationParamsV3} from '../build/tmp/dist/transactions'
-import {WithChainId} from '../dist/transactions'
+
 
 export const leaseMinimalParams: ILeaseParams = {
   recipient: '3N3Cn2pYtqzj7N9pviSesNe8KG9Cmb718Y1',
