@@ -29,6 +29,27 @@ export interface WithSender {
   senderPublicKey: string
 }
 
+export interface WithRecipient {
+  /**
+   * Recipient address. This address is the recipient of the transaction
+   */
+  recipient: string
+}
+
+export interface WithOptSponsor {
+  /**
+   * Sponsor account public key. This account will pay fee and this account's script will be executed if exists
+   */
+  sponsorPublicKey?: string
+}
+
+export interface WithExpires {
+  /**
+   * Expiry time. The expiry time of a transaction
+   */
+  expires: number
+}
+
 export interface WithProofs {
   /**
    * ITransaction signatures
@@ -110,6 +131,9 @@ export interface ITransferTransaction<LONG = string | number> extends ITransacti
  */
 export interface IAnchorTransaction<LONG = string | number> extends ITransaction<LONG> {
   type: TRANSACTION_TYPE.ANCHOR
+  chainId?: number
+  // senderKeyType?: number
+  sponsorPublicKey?: string
   anchors: string[]
 }
 
@@ -119,6 +143,13 @@ export interface IAssociationTransaction<LONG = string | number> extends ITransa
   associationType: LONG,
   hash?: string | null,
 }
+
+export interface IAssociationTransactionV3<LONG = string | number> extends ITransaction<LONG>, WithChainId, WithRecipient, WithOptSponsor, WithExpires {
+  sender: string,
+  associationType: LONG,
+  hash?: string | null,
+}
+
 
 /**
  * Used for invoking association transactions.
@@ -203,7 +234,7 @@ export type TTxParams<LONG = string | number> =
   | IMassTransferParams<LONG>
   | ISetScriptParams<LONG>
   | ITransferParams<LONG>
-  | IAssociationParams<LONG>
+  | IAssociationParams<LONG> | IAssociationParamsV3<LONG>
   | ISponsorParams<LONG>
 
 /**
@@ -300,18 +331,30 @@ export interface ITransferParams<LONG = string | number> extends IBasicParams<LO
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
  */
 export interface IAnchorParams<LONG = string | number> extends IBasicParams<LONG> {
-  anchors: string[]
+  anchors: string[],
 }
 
 /**
  * @typeparam LONG Generic type representing LONG type. Default to string | number. Since javascript number more than 2 ** 53 -1 cannot be precisely represented, generic type is used
  */
 export interface IAssociationParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
+  version?: number
   party: string,
   associationType: LONG,
   hash?: string | null,
   sender?: string,
 }
+
+export interface IAssociationParamsV3<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
+  recipient: string,
+  senderKeyType?: string,
+  associationType: LONG,
+  expires?: number,
+  hash?: string | null,
+  sender?: string,
+  sponsor?: string,
+}
+
 
 export interface ISponsorParams<LONG = string | number> extends IBasicParams<LONG>, WithChainIdParam {
   recipient: string,
