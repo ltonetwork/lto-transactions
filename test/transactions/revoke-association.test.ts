@@ -1,4 +1,4 @@
-import { publicKey, verifySignature } from '@lto-network/lto-crypto'
+import { publicKey, verifySignature } from '../../src/crypto'
 import {revokeAssociation} from '../../src'
 import { associationMinimalParams } from '../minimalParams'
 import { binary } from '../../src/parseSerialize'

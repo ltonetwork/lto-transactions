@@ -1,6 +1,6 @@
 import { publicKey, verifySignature } from '../src/crypto'
 import {signTx } from '../src'
-import { serialize } from '../src'
+import { serialize } from '../src/general'
 import { TTx } from '../src'
 import { exampleTxs } from './exampleTxs'
 

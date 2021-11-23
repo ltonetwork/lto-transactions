@@ -42,6 +42,7 @@ export const dataMinimalParams: IDataParams = {
       value: Uint8Array.from([1, 2, 3, 4]),
     }, {
       key: 'someparam2',
+      type: 'binary',
       value: 'base64:YXNkYQ==',
     }, {
       key: 'someparam3',
