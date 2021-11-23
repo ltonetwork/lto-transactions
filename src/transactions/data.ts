@@ -10,7 +10,7 @@ const {
   SHORT,
   STRING,
 } = serializePrimitives
-import { concat, hashBytes, signBytes } from '@lto-network/lto-crypto'
+import { concat, hashBytes, signBytes } from '../crypto'
 import {
   IDataTransaction,
   TRANSACTION_TYPE,

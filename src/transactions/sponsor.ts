@@ -1,5 +1,5 @@
 import {TRANSACTION_TYPE, ISponsorParams, WithId, WithSender, ISponsorTransaction} from '../transactions'
-import { signBytes, hashBytes } from '@lto-network/lto-crypto'
+import { signBytes, hashBytes } from '../crypto'
 import {addProof, getSenderPublicKey, convertToPairs, fee, networkByte} from '../generic'
 import { TSeedTypes } from '../types'
 import { binary } from '../parseSerialize'

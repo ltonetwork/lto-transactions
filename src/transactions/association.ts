@@ -5,7 +5,7 @@ import {
   WithId,
   WithSender, WithProofs, IAssociationParamsV3, IAssociationTransactionV3,
 } from '../transactions'
-import { signBytes, hashBytes, chainIdOf } from '@lto-network/lto-crypto'
+import { signBytes, hashBytes, chainIdOf } from '../crypto'
 import {addProof, getSenderPublicKey, convertToPairs, fee, networkByte } from '../generic'
 import { TSeedTypes } from '../types'
 import { binary } from '../parseSerialize'

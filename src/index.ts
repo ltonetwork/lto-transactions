@@ -47,7 +47,7 @@ export {
 } from './types'
 
 // internal libraries access
-import * as crypto from '@lto-network/lto-crypto'
+import * as crypto from './crypto'
 
 const libs = {
   crypto,

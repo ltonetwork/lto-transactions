@@ -5,7 +5,7 @@ import {
   WithSender
 } from './transactions'
 import { TSeedTypes } from './types'
-import {publicKey, address } from '@lto-network/lto-crypto'
+import {publicKey, address } from './crypto'
 import axios from 'axios'
 
 export const mapObj = <T, U, K extends string>(obj: Record<K, T>, f: (v: T) => U): Record<K, U> =>
