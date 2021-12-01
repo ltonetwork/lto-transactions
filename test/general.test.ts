@@ -1,4 +1,4 @@
-import { publicKey, verifySignature } from '@lto-network/lto-crypto'
+import { publicKey, verifySignature } from '../src/crypto'
 import {signTx } from '../src'
 import { serialize } from '../src/general'
 import { TTx } from '../src'

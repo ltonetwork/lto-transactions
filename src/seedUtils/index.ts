@@ -7,7 +7,7 @@ import {
   byteArrayToHexString,
   hexStringToByteArray,
   sha256
-} from '@lto-network/lto-crypto'
+} from '../crypto'
 import dictionary from './dictionary'
 import { serializePrimitives, parsePrimitives } from '../parseSerialize'
 

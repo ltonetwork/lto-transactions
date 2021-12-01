@@ -1,4 +1,4 @@
-import { publicKey, verifySignature } from '@lto-network/lto-crypto'
+import { publicKey, verifySignature } from '../../src/crypto'
 import { massTransfer } from '../../src'
 import { massTransferMinimalParams } from '../minimalParams'
 import { binary } from '../../src/parseSerialize'

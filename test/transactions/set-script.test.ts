@@ -1,4 +1,4 @@
-import { verifySignature, publicKey, } from '@lto-network/lto-crypto'
+import { verifySignature, publicKey, } from '../../src/crypto'
 import { setScript } from '../../src'
 import { ISetScriptTransaction } from '../../src/transactions'
 import { binary } from '../../src/parseSerialize'
